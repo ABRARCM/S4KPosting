@@ -6,39 +6,25 @@
 <title>S4K Bank Posting — Abra Health Group</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sky-blue: #00B4D8;
-    --ocean: #0077B6;
-    --deep-navy: #023E8A;
-    --coral: #FF6B6B;
-    --mint: #00D2A0;
-    --warm: #FF9F43;
-    --purple: #A855F7;
-    --bg: #f0f4f8;
-    --card-bg: #ffffff;
-    --text: #1a1a2e;
-    --text-secondary: #64748b;
-    --border: #e2e8f0;
-  }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Poppins', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    margin: 0;
+    padding: 0;
     min-height: 100vh;
   }
 
-  /* ========== LOGIN SCREEN ========== */
+  /* LOGIN SCREEN */
   #login-screen {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--deep-navy) 0%, var(--ocean) 50%, var(--sky-blue) 100%);
+    background: linear-gradient(135deg, #023E8A 0%, #0077B6 50%, #00B4D8 100%);
     padding: 20px;
   }
   .login-container {
-    background: var(--card-bg);
+    background: #ffffff;
     border-radius: 24px;
     padding: 48px 40px;
     max-width: 440px;
@@ -52,7 +38,7 @@
   }
   .login-subtitle {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: #64748b;
     margin-bottom: 8px;
     font-weight: 400;
     letter-spacing: 2px;
@@ -61,12 +47,12 @@
   .login-title {
     font-size: 28px;
     font-weight: 800;
-    color: var(--deep-navy);
+    color: #023E8A;
     margin-bottom: 8px;
   }
   .login-desc {
     font-size: 15px;
-    color: var(--text-secondary);
+    color: #64748b;
     margin-bottom: 32px;
   }
   .login-input-group {
@@ -80,12 +66,12 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    fill: var(--text-secondary);
+    fill: #64748b;
   }
   .login-input {
     width: 100%;
     padding: 16px 16px 16px 48px;
-    border: 2px solid var(--border);
+    border: 2px solid #e2e8f0;
     border-radius: 12px;
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
@@ -93,12 +79,12 @@
     transition: border-color 0.3s;
   }
   .login-input:focus {
-    border-color: var(--sky-blue);
+    border-color: #00B4D8;
   }
   .login-btn {
     width: 100%;
     padding: 16px;
-    background: linear-gradient(135deg, var(--ocean), var(--sky-blue));
+    background: linear-gradient(135deg, #0077B6, #00B4D8);
     color: white;
     border: none;
     border-radius: 12px;
@@ -114,7 +100,7 @@
     box-shadow: 0 8px 25px rgba(0,119,182,0.4);
   }
   .login-error {
-    color: var(--coral);
+    color: #FF6B6B;
     font-size: 14px;
     font-weight: 600;
     margin-top: 12px;
@@ -123,365 +109,34 @@
   .login-footer {
     margin-top: 24px;
     font-size: 12px;
-    color: var(--text-secondary);
+    color: #64748b;
   }
 
-  /* ========== MAIN APP ========== */
-  #app {
+  /* DASHBOARD (iframe fills entire viewport) */
+  #dashboard {
     display: none;
-  }
-
-  /* Header */
-  .app-header {
-    background: linear-gradient(135deg, var(--deep-navy), var(--ocean));
-    padding: 20px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .header-logo {
-    height: 44px;
-  }
-  .header-divider {
-    width: 2px;
-    height: 32px;
-    background: rgba(255,255,255,0.25);
-    border-radius: 2px;
-  }
-  .header-title {
-    color: white;
-    font-size: 22px;
-    font-weight: 700;
-  }
-  .header-badge {
-    background: rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.9);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .logout-btn {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .logout-btn:hover {
-    background: rgba(255,107,107,0.3);
-  }
-
-  /* Navigation */
-  .nav-bar {
-    background: white;
-    padding: 0 32px;
-    display: flex;
-    gap: 0;
-    border-bottom: 2px solid var(--border);
-    overflow-x: auto;
-  }
-  .nav-tab {
-    padding: 14px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .nav-tab:hover {
-    color: var(--ocean);
-    background: rgba(0,180,216,0.05);
-  }
-  .nav-tab.active {
-    color: var(--ocean);
-    border-bottom-color: var(--sky-blue);
-  }
-
-  /* Content area */
-  .content {
-    padding: 32px;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
-
-  /* Cards */
-  .card {
-    background: white;
-    border-radius: 16px;
-    padding: 28px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    border: 1px solid var(--border);
-  }
-  .card-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--deep-navy);
-    margin-bottom: 6px;
-  }
-  .card-subtitle {
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-  }
-
-  /* Section headers */
-  .section-title {
-    font-size: 38px;
-    font-weight: 800;
-    color: var(--deep-navy);
-    margin-bottom: 8px;
-  }
-  .section-subtitle {
-    font-size: 17px;
-    color: var(--text-secondary);
-    margin-bottom: 28px;
-  }
-
-  /* Info grid */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .info-card {
-    background: linear-gradient(135deg, var(--deep-navy), var(--ocean));
-    border-radius: 14px;
-    padding: 22px;
-    color: white;
-  }
-  .info-card.mint { background: linear-gradient(135deg, #00b894, var(--mint)); }
-  .info-card.coral { background: linear-gradient(135deg, #e17055, var(--coral)); }
-  .info-card.purple { background: linear-gradient(135deg, #6c5ce7, var(--purple)); }
-  .info-card.warm { background: linear-gradient(135deg, #e67e22, var(--warm)); }
-  .info-label {
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-  }
-  .info-value {
-    font-size: 28px;
-    font-weight: 800;
-  }
-
-  /* Tables */
-  table {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
+    height: 100%;
   }
-  th {
-    text-align: left;
-    padding: 12px 16px;
-    background: var(--deep-navy);
-    color: white;
-    font-size: 13px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  th:first-child { border-radius: 10px 0 0 0; }
-  th:last-child { border-radius: 0 10px 0 0; }
-  td {
-    padding: 10px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid var(--border);
-  }
-  tr:hover td {
-    background: rgba(0,180,216,0.04);
-  }
-  .amount {
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    text-align: right;
-  }
-
-  /* Badges */
-  .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .badge-ppo { background: rgba(0,180,216,0.12); color: var(--ocean); }
-  .badge-medicaid { background: rgba(168,85,247,0.12); color: var(--purple); }
-  .badge-lockbox { background: rgba(0,210,160,0.12); color: #00b894; }
-  .badge-deposit { background: rgba(255,159,67,0.12); color: #e67e22; }
-  .badge-eft { background: rgba(0,119,182,0.12); color: var(--ocean); }
-  .badge-outgoing { background: rgba(255,107,107,0.12); color: var(--coral); }
-
-  /* Workflow steps */
-  .workflow-steps {
-    counter-reset: step;
-  }
-  .workflow-step {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 24px;
-    align-items: flex-start;
-  }
-  .step-number {
-    flex-shrink: 0;
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, var(--ocean), var(--sky-blue));
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 18px;
-  }
-  .step-content h3 {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--deep-navy);
-    margin-bottom: 4px;
-  }
-  .step-content p {
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-  .step-content ul {
-    margin-top: 6px;
-    padding-left: 18px;
-  }
-  .step-content li {
-    font-size: 15px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-
-  /* Account cards */
-  .acct-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-  .acct-card {
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 22px;
-  }
-  .acct-name {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--deep-navy);
-    margin-bottom: 4px;
-  }
-  .acct-number {
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-family: monospace;
-    margin-bottom: 8px;
-  }
-  .acct-purpose {
-    font-size: 14px;
-    color: var(--ocean);
-    font-weight: 500;
-  }
-
-  /* Mapping tables */
-  .mapping-table td:first-child {
-    font-family: monospace;
-    font-size: 13px;
-    color: var(--ocean);
-    font-weight: 600;
-  }
-
-  /* Code blocks */
-  .code-block {
-    background: #1e293b;
-    color: #e2e8f0;
-    padding: 16px 20px;
-    border-radius: 10px;
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 14px;
-    overflow-x: auto;
-    margin: 12px 0;
-    line-height: 1.6;
-  }
-
-  /* Checklist */
-  .checklist {
-    list-style: none;
-    padding: 0;
-  }
-  .checklist li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .checklist li:last-child { border-bottom: none; }
-  .check-box {
-    width: 22px;
-    height: 22px;
-    border: 2px solid var(--border);
-    border-radius: 6px;
-    flex-shrink: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-  }
-  .check-box.checked {
-    background: var(--mint);
-    border-color: var(--mint);
-  }
-  .check-box.checked::after {
-    content: '\2713';
-    color: white;
-    font-weight: 800;
-    font-size: 14px;
-  }
-
-  /* Footer */
-  .app-footer {
-    text-align: center;
-    padding: 24px;
-    color: var(--text-secondary);
-    font-size: 13px;
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
+  #dashboard iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 </style>
 </head>
 <body>
 
-<!-- ========== LOGIN SCREEN ========== -->
+<!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-container">
     <img src="https://abrahealthgroup.com/wp-content/uploads/2022/09/Asset-48@4x-copy.png" alt="Abra Health Group" class="login-logo">
     <div class="login-subtitle">RCM Team Portal</div>
     <div class="login-title">S4K Bank Posting</div>
-    <div class="login-desc">Enter password to access the project documentation</div>
+    <div class="login-desc">Enter password to access the dashboard</div>
     <form id="login-form" onsubmit="return attemptLogin()">
       <div class="login-input-group">
         <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
@@ -494,527 +149,20 @@
   </div>
 </div>
 
-<!-- ========== MAIN APPLICATION ========== -->
-<div id="app">
-  <!-- Header -->
-  <div class="app-header">
-    <div class="header-left">
-      <img src="https://abrahealthgroup.com/wp-content/uploads/2022/09/Asset-48@4x-copy.png" alt="Abra Health" class="header-logo">
-      <div class="header-divider"></div>
-      <div class="header-title">S4K Bank Posting</div>
-      <div class="header-badge">Weekly Process</div>
-    </div>
-    <button class="logout-btn" onclick="logout()">Sign Out</button>
-  </div>
-
-  <!-- Navigation -->
-  <div class="nav-bar">
-    <div class="nav-tab active" onclick="switchTab('overview')">Overview</div>
-    <div class="nav-tab" onclick="switchTab('workflow')">Weekly Workflow</div>
-    <div class="nav-tab" onclick="switchTab('accounts')">Bank Accounts</div>
-    <div class="nav-tab" onclick="switchTab('categories')">Transaction Categories</div>
-    <div class="nav-tab" onclick="switchTab('mappings')">Merchant & Payer Mappings</div>
-    <div class="nav-tab" onclick="switchTab('output')">Dashboard Output</div>
-    <div class="nav-tab" onclick="switchTab('script')">Script Reference</div>
-    <div class="nav-tab" onclick="switchTab('checklist')">Weekly Checklist</div>
-  </div>
-
-  <!-- Content -->
-  <div class="content">
-
-    <!-- === OVERVIEW === -->
-    <div class="tab-panel active" id="tab-overview">
-      <div class="section-title">Project Overview</div>
-      <div class="section-subtitle">Smiles 4 Keeps (S4K) weekly bank transaction posting workflow for the RCM team</div>
-
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-label">Practice</div>
-          <div class="info-value">Smiles 4 Keeps</div>
-        </div>
-        <div class="info-card mint">
-          <div class="info-label">Frequency</div>
-          <div class="info-value">Weekly</div>
-        </div>
-        <div class="info-card purple">
-          <div class="info-label">Posting Team</div>
-          <div class="info-value">4 Staff</div>
-        </div>
-        <div class="info-card warm">
-          <div class="info-label">PA Locations</div>
-          <div class="info-value">6 Offices</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">What This Project Does</div>
-        <div class="card-subtitle">End-to-end bank transaction categorization, reconciliation, and posting tracker</div>
-        <div style="font-size:15px;line-height:1.8;color:var(--text-secondary)">
-          <p>Each week, the RCM team exports banking data from <strong>CitiBank</strong> (commercial accounts), <strong>PNC</strong> (lockbox check deposits), and account statements. The <code>bank_pivot.py</code> script processes all three data sources and generates an interactive HTML dashboard where the posting team can:</p>
-          <ul style="margin:12px 0 12px 20px">
-            <li>View all incoming deposits categorized by type (Card, EFT, Lockbox, Medicaid)</li>
-            <li>Track EOB receipt status for each transaction</li>
-            <li>Mark transactions as Posted / Not Posted / Partial in Open Dental</li>
-            <li>Add remarks for follow-up or exceptions</li>
-            <li>Reconcile bank statement totals against transaction-level data</li>
-          </ul>
-          <p>The two posting tracks run in parallel: <strong>PPO</strong> (commercial insurance, lockbox checks) and <strong>Medicaid</strong> (Skygen, DentaQuest, Avesis).</p>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Locations Served</div>
-        <div class="card-subtitle">All 6 PA Smiles 4 Keeps offices</div>
-        <table>
-          <thead><tr><th>Location</th><th>Card Deposit ID</th><th>Merchant Code</th></tr></thead>
-          <tbody>
-            <tr><td>Allentown (Tilghman)</td><td><code>TILGHMAN</code></td><td>&mdash;</td></tr>
-            <tr><td>Bartonsville</td><td><code>BARTO</code></td><td>&mdash;</td></tr>
-            <tr><td>Hazleton</td><td><code>HAZLE</code></td><td>&mdash;</td></tr>
-            <tr><td>Reading</td><td><code>READI</code></td><td><code>182885</code></td></tr>
-            <tr><td>Scranton</td><td><code>SCRAN</code></td><td>&mdash;</td></tr>
-            <tr><td>Wilkes-Barre</td><td><code>WILKE</code></td><td><code>222888</code></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === WEEKLY WORKFLOW === -->
-    <div class="tab-panel" id="tab-workflow">
-      <div class="section-title">Weekly Workflow</div>
-      <div class="section-subtitle">Complete step-by-step process to run every Monday/Tuesday</div>
-
-      <div class="card">
-        <div class="workflow-steps">
-          <div class="workflow-step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <h3>Export CitiBank Build Report</h3>
-              <p>Log into CitiBank Commercial Banking. Navigate to Payments & Transfers > Transaction Search. Filter by the prior week (Mon-Sun).</p>
-              <ul>
-                <li>Export <strong>PPO account (6881784489)</strong> &rarr; save as <code>MM.DD to MM.DD PPO.csv</code></li>
-                <li>Export <strong>Medicaid account (6881784534)</strong> &rarr; save as <code>MM.DD to MM.DD Medicaid.csv</code></li>
-                <li>Place both files in <code>Build Report/{Month}/</code></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <h3>Export PNC Lockbox Data</h3>
-              <p>Log into PNC ActivePay / Lockbox portal. Download transaction detail for the week.</p>
-              <ul>
-                <li>Save as <code>MM.DD-MM.DD.csv</code></li>
-                <li>Place in <code>LockBox/{Month}/</code></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <h3>Export Bank Statements (CCB)</h3>
-              <p>Download checking account CSVs from CitiBank for both accounts.</p>
-              <ul>
-                <li>PPO: <code>CCB_CHECKING_6881784489_*.csv</code></li>
-                <li>Medicaid: <code>CCB_CHECKING_6881784534_*.csv</code></li>
-                <li>Place in <code>Bank General/{Month}/</code></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <h3>Update Script Paths</h3>
-              <p>Open <code>bank_pivot.py</code> and update the file paths to match the new week's filenames:</p>
-              <div class="code-block">
-# Line 5 — PPO Build Report<br>
-df_ppo = pd.read_csv("Build Report/{Month}/MM.DD to MM.DD PPO.csv")<br><br>
-# Line 7 — Medicaid Build Report<br>
-df_medicaid = pd.read_csv("Build Report/{Month}/MM.DD to MM.DD Medicaid.csv")<br><br>
-# Line 276 — LockBox<br>
-lb = pd.read_csv("LockBox/{Month}/MM.DD-MM.DD.csv")<br><br>
-# Lines 368-369 — Bank General<br>
-bg_ppo = load_bank_general("Bank General/{Month}/CCB_CHECKING_6881784489_*.csv", "PPO")<br>
-bg_med = load_bank_general("Bank General/{Month}/CCB_CHECKING_6881784534_*.csv", "Medicaid")
-              </div>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">5</div>
-            <div class="step-content">
-              <h3>Run the Script</h3>
-              <div class="code-block">
-cd /Users/Admin/Desktop/Claude/BANK<br>
-python bank_pivot.py
-              </div>
-              <p>This generates <code>Bank_Transaction_Pivot.html</code> in the same directory.</p>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">6</div>
-            <div class="step-content">
-              <h3>Review & Post</h3>
-              <p>Open the generated HTML dashboard. The posting team uses it to track EOBs, mark transactions as posted in Open Dental, and add remarks for follow-up.</p>
-            </div>
-          </div>
-
-          <div class="workflow-step">
-            <div class="step-number">7</div>
-            <div class="step-content">
-              <h3>End-of-Week Reconciliation</h3>
-              <p>Verify all EFTs are marked as "Posted". Follow up on any "Partial" or unmarked items. Flag discrepancies between lockbox totals and bank statements.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- === BANK ACCOUNTS === -->
-    <div class="tab-panel" id="tab-accounts">
-      <div class="section-title">Bank Accounts</div>
-      <div class="section-subtitle">S4K commercial banking accounts managed in this workflow</div>
-
-      <div class="acct-grid">
-        <div class="acct-card" style="border-color:var(--sky-blue)">
-          <div class="acct-name">S4K Ross Wez (PPO)</div>
-          <div class="acct-number">Account #6881784489</div>
-          <div class="acct-purpose">PPO insurance deposits, card terminal batches, lockbox checks, CareCredit</div>
-          <div style="margin-top:12px">
-            <span class="badge badge-ppo">PPO</span>
-            <span class="badge badge-deposit">Card Deposits</span>
-            <span class="badge badge-lockbox">Lockbox</span>
-          </div>
-        </div>
-        <div class="acct-card" style="border-color:var(--purple)">
-          <div class="acct-name">S4K RWez ZBA (Medicaid)</div>
-          <div class="acct-number">Account #6881784534</div>
-          <div class="acct-purpose">Medicaid insurance EFTs — Skygen, DentaQuest, Avesis, SunLife</div>
-          <div style="margin-top:12px">
-            <span class="badge badge-medicaid">Medicaid</span>
-            <span class="badge badge-eft">EFT</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Data Sources by Account</div>
-        <table>
-          <thead><tr><th>Source</th><th>File Pattern</th><th>Account</th><th>Portal</th></tr></thead>
-          <tbody>
-            <tr><td>Build Report PPO</td><td><code>MM.DD to MM.DD PPO.csv</code></td><td>6881784489</td><td>CitiBank</td></tr>
-            <tr><td>Build Report Medicaid</td><td><code>MM.DD to MM.DD Medicaid.csv</code></td><td>6881784534</td><td>CitiBank</td></tr>
-            <tr><td>Lockbox</td><td><code>MM.DD-MM.DD.csv</code></td><td>Both</td><td>PNC ActivePay</td></tr>
-            <tr><td>Bank Statement PPO</td><td><code>CCB_CHECKING_6881784489_*.csv</code></td><td>6881784489</td><td>CitiBank</td></tr>
-            <tr><td>Bank Statement Medicaid</td><td><code>CCB_CHECKING_6881784534_*.csv</code></td><td>6881784534</td><td>CitiBank</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === TRANSACTION CATEGORIES === -->
-    <div class="tab-panel" id="tab-categories">
-      <div class="section-title">Transaction Categories</div>
-      <div class="section-subtitle">How incoming transactions are classified by the script</div>
-
-      <div class="info-grid">
-        <div class="info-card warm">
-          <div class="info-label">Category</div>
-          <div class="info-value" style="font-size:22px">Deposits</div>
-          <div style="font-size:13px;opacity:0.8;margin-top:4px">BANKCARD-8740, MERCHANT BANKCD, SYNCHRONY BANK</div>
-        </div>
-        <div class="info-card">
-          <div class="info-label">Category</div>
-          <div class="info-value" style="font-size:22px">EFT</div>
-          <div style="font-size:13px;opacity:0.8;margin-top:4px">All other incoming sources (insurance payers)</div>
-        </div>
-        <div class="info-card purple">
-          <div class="info-label">Category</div>
-          <div class="info-value" style="font-size:22px">Lockbox</div>
-          <div style="font-size:13px;opacity:0.8;margin-top:4px">PNC-ECHO check deposits</div>
-        </div>
-        <div class="info-card coral">
-          <div class="info-label">Category</div>
-          <div class="info-value" style="font-size:22px">Outgoing</div>
-          <div style="font-size:13px;opacity:0.8;margin-top:4px">Amount &lt; 0 (debits, fees, refunds)</div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Classification Logic</div>
-        <div class="code-block">
-deposit_sources = ['BANKCARD-8740', 'MERCHANT BANKCD', 'SYNCHRONY BANK']<br>
-lockbox_sources = ['PNC-ECHO']<br><br>
-def classify(row):<br>
-&nbsp;&nbsp;&nbsp;&nbsp;name = row['From Account Name']<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if name in deposit_sources: return 'Deposits'<br>
-&nbsp;&nbsp;&nbsp;&nbsp;elif name in lockbox_sources: return 'Lockbox'<br>
-&nbsp;&nbsp;&nbsp;&nbsp;else: return 'EFT'
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">ACH Entry Description Codes</div>
-        <table>
-          <thead><tr><th>Code</th><th>Meaning</th></tr></thead>
-          <tbody>
-            <tr><td><code>HCCLAIMPMT</code></td><td>Healthcare claim payment</td></tr>
-            <tr><td><code>BTOT</code></td><td>Batch total (daily card deposit)</td></tr>
-            <tr><td><code>MTOT</code></td><td>Monthly total</td></tr>
-            <tr><td><code>MonthlyFee</code></td><td>Monthly service fee</td></tr>
-            <tr><td><code>DEPOSIT</code></td><td>Generic deposit</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Lockbox Item Types</div>
-        <table>
-          <thead><tr><th>Item Type</th><th>Description</th><th>Action</th></tr></thead>
-          <tbody>
-            <tr><td><code>Check</code></td><td>Physical check with payment</td><td>Include in totals</td></tr>
-            <tr><td><code>Corr</code></td><td>Correspondence Only (EOB without check)</td><td>Filter out of amount totals</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === MERCHANT & PAYER MAPPINGS === -->
-    <div class="tab-panel" id="tab-mappings">
-      <div class="section-title">Merchant & Payer Mappings</div>
-      <div class="section-subtitle">How raw bank data maps to friendly names in the dashboard</div>
-
-      <div class="card">
-        <div class="card-title">Card Deposits (BANKCARD-8740)</div>
-        <div class="card-subtitle">ACH Individual ID contains location identifier</div>
-        <table class="mapping-table">
-          <thead><tr><th>ACH ID Contains</th><th>Location</th></tr></thead>
-          <tbody>
-            <tr><td>BARTO</td><td>Bartonsville</td></tr>
-            <tr><td>SCRAN</td><td>Scranton</td></tr>
-            <tr><td>HAZLE</td><td>Hazleton</td></tr>
-            <tr><td>WILKE</td><td>Wilkes-Barre</td></tr>
-            <tr><td>TILGHMAN</td><td>Allentown (Tilghman)</td></tr>
-            <tr><td>READI</td><td>Reading</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Merchant Deposits (MERCHANT BANKCD)</div>
-        <table class="mapping-table">
-          <thead><tr><th>ACH ID Contains</th><th>Mapped Name</th></tr></thead>
-          <tbody>
-            <tr><td>182885</td><td>Reading (Merchant)</td></tr>
-            <tr><td>416884</td><td>S4K Pediatric (Merchant)</td></tr>
-            <tr><td>222888</td><td>Wilkes-Barre (Merchant)</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Insurance Payers (EFT)</div>
-        <table class="mapping-table">
-          <thead><tr><th>From Account Name</th><th>Payer</th><th>Type</th></tr></thead>
-          <tbody>
-            <tr><td>ZP SKYGENOPT510</td><td>Skygen</td><td><span class="badge badge-medicaid">Medicaid</span></td></tr>
-            <tr><td>DENTAQUEST NATL</td><td>DentaQuest</td><td><span class="badge badge-medicaid">Medicaid</span></td></tr>
-            <tr><td>AVESIS THIRD PTY</td><td>Avesis</td><td><span class="badge badge-medicaid">Medicaid</span></td></tr>
-            <tr><td>SUNLIFE</td><td>SunLife</td><td><span class="badge badge-ppo">PPO</span></td></tr>
-            <tr><td>DDPAR</td><td>Delta Dental PAR</td><td><span class="badge badge-ppo">PPO</span></td></tr>
-            <tr><td>SYNCHRONY BANK</td><td>CareCredit</td><td><span class="badge badge-deposit">Patient Finance</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Lockbox Numbers</div>
-        <table class="mapping-table">
-          <thead><tr><th>Lockbox #</th><th>Account Type</th></tr></thead>
-          <tbody>
-            <tr><td>11234</td><td><span class="badge badge-ppo">PPO</span></td></tr>
-            <tr><td>11233</td><td><span class="badge badge-medicaid">Medicaid</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === DASHBOARD OUTPUT === -->
-    <div class="tab-panel" id="tab-output">
-      <div class="section-title">Dashboard Output</div>
-      <div class="section-subtitle">What the Bank_Transaction_Pivot.html dashboard contains</div>
-
-      <div class="card">
-        <div class="card-title">Dashboard Tabs</div>
-        <table>
-          <thead><tr><th>#</th><th>Tab Name</th><th>Content</th><th>Key Features</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td>Deposits</td><td>Card terminal deposits by location</td><td>Date groups, payer badges, deposit type</td></tr>
-            <tr><td>2</td><td>EFT PPO</td><td>PPO insurance EFTs</td><td>EOB dropdown, Posted dropdown, Remarks</td></tr>
-            <tr><td>3</td><td>EFT Medicaid</td><td>Medicaid insurance EFTs</td><td>EOB dropdown, Posted dropdown, Remarks</td></tr>
-            <tr><td>4</td><td>Lockbox PPO</td><td>Checks from lockbox 11234</td><td>Check #, EOB status, Posted, Remarks</td></tr>
-            <tr><td>5</td><td>Lockbox Medicaid</td><td>Checks from lockbox 11233</td><td>Check #, EOB status, Posted, Remarks</td></tr>
-            <tr><td>6</td><td>Check Deposits</td><td>PNC-ECHO deposit reconciliation</td><td>EOB status, Remarks</td></tr>
-            <tr><td>7</td><td>Outgoing</td><td>Debits, fees, refunds</td><td>Posted status</td></tr>
-            <tr><td>8</td><td>Bank Statement PPO</td><td>Daily totals from CCB (PPO)</td><td>EFT vs Lockbox breakdown</td></tr>
-            <tr><td>9</td><td>Bank Statement Medicaid</td><td>Daily totals from CCB (Medicaid)</td><td>EFT vs Lockbox breakdown</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Tracking Dropdowns</div>
-        <div class="card-subtitle">Each EFT and Lockbox row includes interactive status tracking</div>
-        <table>
-          <thead><tr><th>Field</th><th>Options</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td><strong>EOB</strong></td><td>Yes / No</td><td>Has the Explanation of Benefits been received?</td></tr>
-            <tr><td><strong>Posted</strong></td><td>Yes / No / Partial</td><td>Has this been posted in Open Dental?</td></tr>
-            <tr><td><strong>Remarks</strong></td><td>Free text</td><td>Notes for follow-up or exceptions</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === SCRIPT REFERENCE === -->
-    <div class="tab-panel" id="tab-script">
-      <div class="section-title">Script Reference</div>
-      <div class="section-subtitle">Technical details of bank_pivot.py</div>
-
-      <div class="card">
-        <div class="card-title">Prerequisites</div>
-        <div class="code-block">pip install pandas</div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Execution</div>
-        <div class="code-block">
-cd /Users/Admin/Desktop/Claude/BANK<br>
-python bank_pivot.py
-        </div>
-        <p style="font-size:15px;color:var(--text-secondary);margin-top:12px">Generates <code>Bank_Transaction_Pivot.html</code> in the same directory.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Script Structure</div>
-        <table>
-          <thead><tr><th>Section</th><th>Lines</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td>Data Loading</td><td>1-20</td><td>Read PPO + Medicaid CSVs, clean columns</td></tr>
-            <tr><td>Classification</td><td>21-36</td><td>Categorize as Deposits/Lockbox/EFT</td></tr>
-            <tr><td>Friendly Names</td><td>39-68</td><td>Map ACH IDs to location/payer names</td></tr>
-            <tr><td>Overview Rows</td><td>92-127</td><td>Build summary HTML by date</td></tr>
-            <tr><td>Detail Rows</td><td>132-273</td><td>Build transaction-level HTML with dropdowns</td></tr>
-            <tr><td>Lockbox Processing</td><td>275-338</td><td>Parse PNC lockbox CSV, split PPO/Medicaid</td></tr>
-            <tr><td>Bank General</td><td>340-449</td><td>Load CCB statements, classify credits</td></tr>
-            <tr><td>HTML Output</td><td>450+</td><td>Generate full interactive HTML dashboard</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Key Functions</div>
-        <table>
-          <thead><tr><th>Function</th><th>Purpose</th></tr></thead>
-          <tbody>
-            <tr><td><code>classify(row)</code></td><td>Categorize transaction by From Account Name</td></tr>
-            <tr><td><code>friendly_name(row)</code></td><td>Map ACH IDs to human-readable names</td></tr>
-            <tr><td><code>deposit_type_label(row)</code></td><td>Label as Batch/Monthly/Deposit</td></tr>
-            <tr><td><code>detail_deposit_rows(data)</code></td><td>Generate deposit detail HTML</td></tr>
-            <tr><td><code>detail_eft_rows(data)</code></td><td>Generate EFT detail HTML with status dropdowns</td></tr>
-            <tr><td><code>detail_lockbox_rows(data)</code></td><td>Generate lockbox summary HTML</td></tr>
-            <tr><td><code>detail_lockbox_detail_rows(data, prefix)</code></td><td>Generate lockbox check-level HTML</td></tr>
-            <tr><td><code>load_bank_general(path, acct_name)</code></td><td>Load and classify CCB statement data</td></tr>
-            <tr><td><code>build_acct_overview(bg_data)</code></td><td>Build daily summary for bank statements</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Paths to Update Weekly</div>
-        <table>
-          <thead><tr><th>Line</th><th>Variable</th><th>What to Change</th></tr></thead>
-          <tbody>
-            <tr><td>5</td><td><code>df_ppo</code></td><td>PPO Build Report filename</td></tr>
-            <tr><td>7</td><td><code>df_medicaid</code></td><td>Medicaid Build Report filename</td></tr>
-            <tr><td>276</td><td><code>lb</code></td><td>Lockbox filename</td></tr>
-            <tr><td>368</td><td><code>bg_ppo</code></td><td>PPO Bank General filename</td></tr>
-            <tr><td>369</td><td><code>bg_med</code></td><td>Medicaid Bank General filename</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- === WEEKLY CHECKLIST === -->
-    <div class="tab-panel" id="tab-checklist">
-      <div class="section-title">Weekly Checklist</div>
-      <div class="section-subtitle">Use this checklist each week to ensure nothing is missed</div>
-
-      <div class="card">
-        <div class="card-title">Data Export</div>
-        <ul class="checklist">
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>CitiBank PPO Build Report exported</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>CitiBank Medicaid Build Report exported</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>PNC Lockbox data downloaded</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>CCB PPO statement downloaded</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>CCB Medicaid statement downloaded</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Script Execution</div>
-        <ul class="checklist">
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>File paths updated in bank_pivot.py</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Script ran successfully</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Dashboard HTML generated and reviewed</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title">Verification</div>
-        <ul class="checklist">
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Deposit totals match expected card terminal batches</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>EFT PPO shows all expected insurance payers</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>EFT Medicaid shows Skygen, DentaQuest, Avesis entries</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Lockbox check counts look reasonable</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Outgoing tab shows expected debits/fees</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Bank statement totals reconcile with Build Report</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title">End-of-Week</div>
-        <ul class="checklist">
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>All EFTs marked as "Posted"</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Partial/unmarked items followed up</li>
-          <li><div class="check-box" onclick="toggleCheck(this)"></div>Discrepancies flagged and documented</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Footer -->
-  <div class="app-footer">
-    Abra Health Group &mdash; S4K Bank Posting Documentation &mdash; Confidential
-  </div>
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <iframe id="dash-frame" src="about:blank"></iframe>
 </div>
 
 <script>
-  // Password: SHA-256 hash of the password for client-side validation
-  // Password is "S4KPosting2026"
-  const PASS_HASH = '6a1f5c0e8b3d2a4f7e9c1b5d3a7f2e8c4b6d0a9f1e3c5b7d2a4f6e8c0b3d5a';
   const CORRECT_PASSWORD = 'S4KPosting2026';
 
   function attemptLogin() {
     const input = document.getElementById('password-input').value;
     if (input === CORRECT_PASSWORD) {
       document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('dash-frame').src = 'dashboard.html';
       sessionStorage.setItem('s4k_auth', 'true');
     } else {
       document.getElementById('login-error').style.display = 'block';
@@ -1024,31 +172,11 @@ python bank_pivot.py
     return false;
   }
 
-  function logout() {
-    sessionStorage.removeItem('s4k_auth');
-    document.getElementById('app').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('password-input').value = '';
-    document.getElementById('login-error').style.display = 'none';
-  }
-
   // Restore session
   if (sessionStorage.getItem('s4k_auth') === 'true') {
     document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-  }
-
-  // Tab switching
-  function switchTab(tabId) {
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + tabId).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  // Checklist toggle
-  function toggleCheck(el) {
-    el.classList.toggle('checked');
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('dash-frame').src = 'dashboard.html';
   }
 </script>
 
