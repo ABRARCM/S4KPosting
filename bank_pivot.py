@@ -1199,14 +1199,14 @@ html = f"""<!DOCTYPE html>
 <div class="tab-bar">
     <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
     <button class="tab-btn" onclick="showTab('bankdep')">Deposits</button>
-    <button class="tab-btn" onclick="showTab('deposits')">Card Deposits <span class="tab-count">{len(deposits)}</span></button>
-    <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">{len(check_deposits)}</span></button>
     <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">{len(eft)}</span></button>
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">{len(eft_medicaid)}</span></button>
     <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">{len(lb_ppo)}</span></button>
     <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">{len(lb_medicaid)}</span></button>
     <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">{num_dep_checks}</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">{len(outgoing_ins)}</span></button>
+    <button class="tab-btn" onclick="showTab('deposits')">Card Deposits <span class="tab-count">{len(deposits)}</span></button>
+    <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">{len(check_deposits)}</span></button>
 </div>
 
 <!-- ==================== OVERVIEW TAB ==================== -->
