@@ -977,6 +977,16 @@ html = f"""<!DOCTYPE html>
     .detail-icon {{ font-size: 26px; }}
     .detail-title {{ font-size: 20px; font-weight: 700; }}
     .detail-sub {{ font-size: 13px; opacity: 0.85; margin-top: 2px; }}
+    .detail-posted {{
+        font-size: 16px;
+        font-weight: 700;
+        color: #00D2A0;
+        background: rgba(0,210,160,0.15);
+        padding: 6px 14px;
+        border-radius: 10px;
+        margin-left: 8px;
+        white-space: nowrap;
+    }}
     .detail-total {{
         margin-left: auto;
         font-size: 22px;
@@ -1429,6 +1439,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Match to ERA/835 files and post insurance payments in Open Dental</div>
             </div>
             <div class="detail-total">{fmt_money(total_eft)}</div>
+            <div class="detail-posted" id="posted-tab-eft">Posted: $0.00</div>
         </div>
         <table>
             <thead><tr>
@@ -1456,6 +1467,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Match to ERA/835 files and post insurance payments in Open Dental</div>
             </div>
             <div class="detail-total">{fmt_money(total_eft_medicaid)}</div>
+            <div class="detail-posted" id="posted-tab-eftmed">Posted: $0.00</div>
         </div>
         <table>
             <thead><tr>
@@ -1483,6 +1495,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">PPO insurance checks — match to EOBs and post in Open Dental</div>
             </div>
             <div class="detail-total">{fmt_money(total_lb_ppo)}</div>
+            <div class="detail-posted" id="posted-tab-lbppo">Posted: $0.00</div>
         </div>
         <table>
             <thead><tr>
@@ -1508,6 +1521,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Medicaid checks — match to EOBs and post in Open Dental</div>
             </div>
             <div class="detail-total">{fmt_money(total_lb_medicaid)}</div>
+            <div class="detail-posted" id="posted-tab-lbmed">Posted: $0.00</div>
         </div>
         <table>
             <thead><tr>
@@ -1533,6 +1547,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Checks deposited at the bank — match to General Deposit line items</div>
             </div>
             <div class="detail-total">{fmt_money(total_dep_checks)}</div>
+            <div class="detail-posted" id="posted-tab-depchk">Posted: $0.00</div>
         </div>
         <table>
             <thead><tr>
@@ -1657,6 +1672,32 @@ function updateProgress() {{
     const medPct = countProgress(medTabs);
     document.getElementById('progressFillMed').style.width = medPct + '%';
     document.getElementById('progressTextMed').textContent = medPct + '%';
+
+    // Update posted totals per tab
+    const tabsWithPosted = ['tab-eft', 'tab-eftmed', 'tab-lbppo', 'tab-lbmed', 'tab-depchk'];
+    tabsWithPosted.forEach(tabId => {{
+        const tab = document.getElementById(tabId);
+        const el = document.getElementById('posted-' + tabId);
+        if (!tab || !el) return;
+        let postedAmt = 0;
+        // Find all rows where the OD Posted select (not EOB) is set to "yes"
+        const selects = tab.querySelectorAll('.posted-select:not(.eob-select)');
+        selects.forEach(s => {{
+            if (s.value === 'yes') {{
+                // Get the amount from the same row's .amount cell
+                const row = s.closest('tr');
+                if (row) {{
+                    const amtCell = row.querySelector('.amount');
+                    if (amtCell) {{
+                        const txt = amtCell.textContent.replace(/[$,()]/g, '').trim();
+                        const val = parseFloat(txt);
+                        if (!isNaN(val)) postedAmt += val;
+                    }}
+                }}
+            }}
+        }});
+        el.textContent = 'Posted: $' + postedAmt.toLocaleString('en-US', {{minimumFractionDigits: 2, maximumFractionDigits: 2}});
+    }});
 }}
 
 // === Real-time listeners — sync across all users ===
