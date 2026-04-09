@@ -12,26 +12,21 @@ def stable_id(prefix, *parts):
     return f"{prefix}-{short_hash}"
 
 # ============================================================
-# DATA SOURCE: OneDrive combined CSV (both PPO + Medicaid)
-# Path: OneDrive > ABRA RCM - PA > PA Posting > Citi Bank > {Month} > Reports Builder
-# The script auto-detects PPO vs Medicaid by To Account Name:
+# DATA SOURCE: Reads ALL CSVs from OneDrive Reports Builder folder
+# AND any local Build Report files. New weekly exports are additive —
+# old data is never lost, new data just gets appended.
+#
+# PPO vs Medicaid auto-detected by account:
 #   S4K Ross Wez (6881784489) = PPO
 #   S4K RWez ZBA (6881784534) = Medicaid
 # ============================================================
+import glob
+import os
+
 ONEDRIVE_BASE = "/Users/Admin/Library/CloudStorage/OneDrive-ChildSmilesGroup,LLC(2)/ABRA RCM - PA/PA Posting/Citi Bank"
 MONTH_FOLDER = "04. April"
 REPORTS_BUILDER = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/Reports Builder"
-
-# Read the combined CSV — find the most recent file in Reports Builder
-import glob
-import os
-report_files = sorted(glob.glob(f"{REPORTS_BUILDER}/*.csv"), key=os.path.getmtime, reverse=True)
-if not report_files:
-    raise FileNotFoundError(f"No CSV files found in {REPORTS_BUILDER}")
-report_file = report_files[0]
-print(f"Reading: {report_file}")
-
-df = pd.read_csv(report_file)
+LOCAL_BUILD_REPORT = "/Users/Admin/Desktop/Claude/BANK/Build Report/April"
 
 # Classify PPO vs Medicaid by destination account
 def detect_source(row):
@@ -41,7 +36,45 @@ def detect_source(row):
         return 'Medicaid'
     return 'PPO'
 
-df['_source'] = df.apply(detect_source, axis=1)
+# Read ALL CSVs from OneDrive Reports Builder (combined format)
+all_frames = []
+report_files = sorted(glob.glob(f"{REPORTS_BUILDER}/*.csv"), key=os.path.getmtime)
+for rf in report_files:
+    print(f"Reading OneDrive: {os.path.basename(rf)}")
+    tmp = pd.read_csv(rf)
+    tmp['_source'] = tmp.apply(detect_source, axis=1)
+    all_frames.append(tmp)
+
+# Also read local Build Report files (legacy PPO/Medicaid split format)
+local_files = sorted(glob.glob(f"{LOCAL_BUILD_REPORT}/*.csv"))
+for lf in local_files:
+    fname = os.path.basename(lf).lower()
+    print(f"Reading Local: {os.path.basename(lf)}")
+    tmp = pd.read_csv(lf)
+    if 'medicaid' in fname:
+        tmp['_source'] = 'Medicaid'
+    else:
+        tmp['_source'] = 'PPO'
+    all_frames.append(tmp)
+
+if not all_frames:
+    raise FileNotFoundError("No CSV files found in OneDrive Reports Builder or local Build Report folder")
+
+df = pd.concat(all_frames, ignore_index=True)
+
+# Deduplicate — same date + amount + from account + ACH ID = same transaction
+df['_dedup_key'] = (
+    df['Date'].astype(str) + '|' +
+    df['Amount'].astype(str) + '|' +
+    df['From Account Name'].astype(str).str.strip() + '|' +
+    df['ACH Individual ID'].astype(str).str.strip()
+)
+before = len(df)
+df = df.drop_duplicates(subset='_dedup_key', keep='first')
+dupes = before - len(df)
+if dupes > 0:
+    print(f"Removed {dupes} duplicate transactions")
+df = df.drop(columns=['_dedup_key'])
 
 # Clean columns
 df.columns = df.columns.str.strip()
