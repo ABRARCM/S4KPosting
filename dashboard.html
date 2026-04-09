@@ -396,14 +396,13 @@
 <div class="tab-bar">
     <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
     <button class="tab-btn" onclick="showTab('bankdep')">Deposits</button>
-    <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">123</span></button>
+    <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">174</span></button>
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">19</span></button>
     <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">118</span></button>
     <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">12</span></button>
     <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">38</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">1</span></button>
     <button class="tab-btn" onclick="showTab('deposits')">Card Deposits <span class="tab-count">55</span></button>
-    <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">51</span></button>
 </div>
 
 <!-- ==================== OVERVIEW TAB ==================== -->
@@ -413,7 +412,7 @@
         <h3>How to Use This Report</h3>
         <ul>
             <li><span class="step-icon">1</span> <strong>CARD DEPOSITS</strong> (green) = Credit card batches by location. Match to CC batch reports in Open Dental.</li>
-            <li><span class="step-icon">2</span> <strong>PNC</strong> (teal) = PNC-ECHO cash deposits showing on bank statement. Match to EOBs.</li>
+            <li><span class="step-icon">2</span> <strong>United Concordia</strong> = PNC-ECHO EFT payments. Now included under PPO EFT tab.</li>
             <li><span class="step-icon">3</span> <strong>PPO EFT / MEDICAID EFT</strong> (blue) = Insurance electronic payments. Match to ERA/835 files.</li>
             <li><span class="step-icon">4</span> <strong>LOCKBOX PPO / MEDICAID</strong> (purple) = Lockbox detail with check numbers. Use to match individual checks.</li>
             <li><span class="step-icon">!</span> <strong>OUTGOING</strong> (red) = Insurance debits only. Review for accuracy.</li>
@@ -555,8 +554,8 @@
             <tbody>
                 <tr>
                     <td><span class="cat-badge cat-eft">PPO EFT</span></td>
-                    <td class="count-col">123</td>
-                    <td class="amount">$42,124.40</td>
+                    <td class="count-col">174</td>
+                    <td class="amount">$70,710.52</td>
                 </tr>
                 <tr>
                     <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
@@ -565,8 +564,8 @@
                 </tr>
                 <tr style="border-top:2px solid #023E8A">
                     <td><strong>Total EFT</strong></td>
-                    <td class="count-col"><strong>142</strong></td>
-                    <td class="amount"><strong>$1,708,446.12</strong></td>
+                    <td class="count-col"><strong>193</strong></td>
+                    <td class="amount"><strong>$1,737,032.24</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -1227,857 +1226,6 @@
     </div>
 </div>
 
-<!-- ==================== CHECK DEPOSITS TAB ==================== -->
-<div id="tab-checkdep" class="tab-content">
-    <div class="detail-block">
-        <div class="detail-header dh-checkdep">
-            <div class="detail-icon">🏦</div>
-            <div>
-                <div class="detail-title">PNC — Cash Deposits</div>
-                <div class="detail-sub">PNC-ECHO cash deposits — match to EOBs and post in Open Dental</div>
-            </div>
-            <div class="detail-total">$28,586.12</div>
-        </div>
-        <table>
-            <thead><tr>
-                <th style="width:90px">Date</th>
-                <th>Payer</th>
-                <th style="width:110px">Amount</th>
-                <th>ACH Individual ID</th>
-                <th>Payer Name</th>
-                <th style="width:120px">EOB Downloaded</th>
-                <th style="width:180px">Remarks</th>
-            </tr></thead>
-            <tbody><tr class="date-header">
-            <td colspan="7">
-                <span class="date-label">04/07/2026</span>
-                <span class="date-stats">50 check deposits &bull; <strong>$28,481.12</strong></span>
-            </td>
-        </tr><tr data-row="chk-ed6f619b07">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$3,570.29</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-ed6f619b07" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-ed6f619b07" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-bfe81c23c0">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$2,028.79</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-bfe81c23c0" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-bfe81c23c0" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-62c3ac4f55">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,803.46</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-62c3ac4f55" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-62c3ac4f55" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-6307b2550e">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,778.50</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-6307b2550e" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-6307b2550e" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-6bdad18787">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,316.04</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-6bdad18787" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-6bdad18787" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-576ad00ae3">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,110.17</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-576ad00ae3" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-576ad00ae3" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-1986e895cc">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,042.32</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-1986e895cc" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-1986e895cc" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-6c51ab863f">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$1,000.00</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-6c51ab863f" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-6c51ab863f" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-9615a56898">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$984.53</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-9615a56898" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-9615a56898" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-2146d15c87">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$968.87</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-2146d15c87" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-2146d15c87" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-ee23994e41">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$962.12</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-ee23994e41" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-ee23994e41" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-d0b71e3ab5">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$840.63</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-d0b71e3ab5" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-d0b71e3ab5" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-2350102eb0">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$827.01</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-2350102eb0" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-2350102eb0" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-73d81bda29">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$826.12</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-73d81bda29" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-73d81bda29" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-55289a1adf">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$820.59</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-55289a1adf" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-55289a1adf" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-a317318db0">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$772.27</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-a317318db0" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-a317318db0" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-437f7c0e32">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$703.17</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-437f7c0e32" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-437f7c0e32" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4698736a10">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$618.06</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4698736a10" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4698736a10" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-e2ce8a9417">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$594.97</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-e2ce8a9417" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-e2ce8a9417" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-cb0d6a317d">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$458.72</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-cb0d6a317d" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-cb0d6a317d" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-60828408c6">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$434.33</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-60828408c6" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-60828408c6" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-6940939f76">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$417.20</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-6940939f76" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-6940939f76" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-d6ecd80c09">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$397.58</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-d6ecd80c09" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-d6ecd80c09" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4468480d44">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$379.44</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4468480d44" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4468480d44" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-ebf50fb5c0">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$373.66</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-ebf50fb5c0" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-ebf50fb5c0" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-91e307bd2b">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$322.32</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-91e307bd2b" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-91e307bd2b" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4a37a5e084">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$279.17</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4a37a5e084" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4a37a5e084" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-14fa3ff32a">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$269.02</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-14fa3ff32a" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-14fa3ff32a" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-d9e73e8abd">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$245.90</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-d9e73e8abd" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-d9e73e8abd" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-aedb2198ce">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$239.27</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-aedb2198ce" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-aedb2198ce" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-87f5590476">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$237.36</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-87f5590476" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-87f5590476" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-93e03f9729">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$179.64</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-93e03f9729" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-93e03f9729" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-df529b5abf">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$173.52</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-df529b5abf" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-df529b5abf" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4c95dfc679">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$159.26</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4c95dfc679" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4c95dfc679" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-e3475f64bd">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$155.85</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-e3475f64bd" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-e3475f64bd" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-2c96fccfcc">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$123.79</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-2c96fccfcc" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-2c96fccfcc" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-a17bd7b52d">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$118.96</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-a17bd7b52d" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-a17bd7b52d" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-ed96b8ff9d">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$111.39</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-ed96b8ff9d" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-ed96b8ff9d" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-520bbbc119">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$108.08</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-520bbbc119" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-520bbbc119" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4bca5d4cab">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$99.54</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4bca5d4cab" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4bca5d4cab" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-86cf37d2f4">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$96.40</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-86cf37d2f4" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-86cf37d2f4" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-cc4e62ec97">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$92.99</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-cc4e62ec97" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-cc4e62ec97" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-e86ff63fa5">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$84.10</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-e86ff63fa5" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-e86ff63fa5" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-019244c71b">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$65.17</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-019244c71b" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-019244c71b" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-0c2f389cdc">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$60.70</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-0c2f389cdc" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-0c2f389cdc" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-7c42f21782">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$58.42</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-7c42f21782" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-7c42f21782" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-4d4e7a0d5f">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$56.05</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-4d4e7a0d5f" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-4d4e7a0d5f" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-3677f02242">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$50.79</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-3677f02242" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-3677f02242" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-916a0a2697">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$38.49</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-916a0a2697" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-916a0a2697" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="chk-cd14c879c8">
-            <td class="date-col">04/07/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$26.10</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-cd14c879c8" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-cd14c879c8" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr class="date-header">
-            <td colspan="7">
-                <span class="date-label">04/02/2026</span>
-                <span class="date-stats">1 check deposits &bull; <strong>$105.00</strong></span>
-            </td>
-        </tr><tr data-row="chk-50244d775a">
-            <td class="date-col">04/02/2026</td>
-            <td><span class="payer-badge eft-badge">PNC-ECHO</span></td>
-            <td class="amount">$105.00</td>
-            <td class="ach-col">231998274</td>
-            <td class="desc-col">ROSS M WEZMAR DDS</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-chk-50244d775a" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-chk-50244d775a" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr></tbody>
-        </table>
-    </div>
-</div>
 
 <!-- ==================== EFT TAB ==================== -->
 <div id="tab-eft" class="tab-content">
@@ -2088,7 +1236,7 @@
                 <div class="detail-title">PPO EFT — Insurance Electronic Payments</div>
                 <div class="detail-sub">Match to ERA/835 files and post insurance payments in Open Dental</div>
             </div>
-            <div class="detail-total">$42,124.40</div>
+            <div class="detail-total">$70,710.52</div>
         </div>
         <table>
             <thead><tr>
@@ -2733,7 +1881,463 @@
         </tr><tr class="date-header">
             <td colspan="8">
                 <span class="date-label">04/07/2026</span>
-                <span class="date-stats">10 EFTs &bull; <strong>$2,408.20</strong></span>
+                <span class="date-stats">60 EFTs &bull; <strong>$30,889.32</strong></span>
+            </td>
+        </tr><tr data-row="eft-ed6f619b07">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$3,570.29</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-ed6f619b07" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-ed6f619b07" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-ed6f619b07" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-bfe81c23c0">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$2,028.79</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-bfe81c23c0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-bfe81c23c0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-bfe81c23c0" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-62c3ac4f55">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,803.46</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-62c3ac4f55" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-62c3ac4f55" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-62c3ac4f55" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-6307b2550e">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,778.50</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-6307b2550e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-6307b2550e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-6307b2550e" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-6bdad18787">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,316.04</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-6bdad18787" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-6bdad18787" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-6bdad18787" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-576ad00ae3">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,110.17</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-576ad00ae3" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-576ad00ae3" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-576ad00ae3" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-1986e895cc">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,042.32</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-1986e895cc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-1986e895cc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-1986e895cc" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-6c51ab863f">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$1,000.00</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-6c51ab863f" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-6c51ab863f" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-6c51ab863f" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-9615a56898">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$984.53</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-9615a56898" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-9615a56898" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-9615a56898" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-2146d15c87">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$968.87</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-2146d15c87" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-2146d15c87" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-2146d15c87" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-ee23994e41">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$962.12</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-ee23994e41" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-ee23994e41" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-ee23994e41" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-d0b71e3ab5">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$840.63</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-d0b71e3ab5" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-d0b71e3ab5" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-d0b71e3ab5" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-2350102eb0">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$827.01</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-2350102eb0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-2350102eb0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-2350102eb0" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-73d81bda29">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$826.12</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-73d81bda29" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-73d81bda29" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-73d81bda29" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-55289a1adf">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$820.59</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-55289a1adf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-55289a1adf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-55289a1adf" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-a317318db0">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$772.27</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-a317318db0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-a317318db0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-a317318db0" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-437f7c0e32">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$703.17</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-437f7c0e32" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-437f7c0e32" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-437f7c0e32" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-4698736a10">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$618.06</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4698736a10" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4698736a10" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4698736a10" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-e2ce8a9417">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$594.97</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-e2ce8a9417" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-e2ce8a9417" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-e2ce8a9417" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="eft-a5b746a6fa">
             <td class="date-col">04/07/2026</td>
@@ -2759,6 +2363,30 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-a5b746a6fa" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
+        </tr><tr data-row="eft-cb0d6a317d">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$458.72</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-cb0d6a317d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-cb0d6a317d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-cb0d6a317d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
         </tr><tr data-row="eft-1d8b0ff4ea">
             <td class="date-col">04/07/2026</td>
             <td><span class="payer-badge eft-badge">DELTA DENTAL MI</span></td>
@@ -2782,6 +2410,126 @@
             </td>
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-1d8b0ff4ea" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-60828408c6">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$434.33</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-60828408c6" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-60828408c6" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-60828408c6" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-6940939f76">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$417.20</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-6940939f76" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-6940939f76" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-6940939f76" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-d6ecd80c09">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$397.58</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-d6ecd80c09" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-d6ecd80c09" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-d6ecd80c09" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-4468480d44">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$379.44</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4468480d44" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4468480d44" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4468480d44" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-ebf50fb5c0">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$373.66</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-ebf50fb5c0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-ebf50fb5c0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-ebf50fb5c0" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="eft-7f927f75a3">
             <td class="date-col">04/07/2026</td>
@@ -2807,6 +2555,30 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-7f927f75a3" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
+        </tr><tr data-row="eft-91e307bd2b">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$322.32</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-91e307bd2b" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-91e307bd2b" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-91e307bd2b" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
         </tr><tr data-row="eft-4f3a4974fa">
             <td class="date-col">04/07/2026</td>
             <td><span class="payer-badge eft-badge">DDPAR</span></td>
@@ -2831,6 +2603,54 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-4f3a4974fa" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
+        </tr><tr data-row="eft-4a37a5e084">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$279.17</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4a37a5e084" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4a37a5e084" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4a37a5e084" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-14fa3ff32a">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$269.02</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-14fa3ff32a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-14fa3ff32a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-14fa3ff32a" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
         </tr><tr data-row="eft-0b6eb9608e">
             <td class="date-col">04/07/2026</td>
             <td><span class="payer-badge eft-badge">DDPAR</span></td>
@@ -2854,6 +2674,150 @@
             </td>
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-0b6eb9608e" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-d9e73e8abd">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$245.90</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-d9e73e8abd" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-d9e73e8abd" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-d9e73e8abd" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-aedb2198ce">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$239.27</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-aedb2198ce" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-aedb2198ce" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-aedb2198ce" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-87f5590476">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$237.36</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-87f5590476" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-87f5590476" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-87f5590476" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-93e03f9729">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$179.64</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-93e03f9729" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-93e03f9729" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-93e03f9729" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-df529b5abf">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$173.52</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-df529b5abf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-df529b5abf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-df529b5abf" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-4c95dfc679">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$159.26</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4c95dfc679" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4c95dfc679" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4c95dfc679" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="eft-87964bab48">
             <td class="date-col">04/07/2026</td>
@@ -2903,6 +2867,78 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-398014203d" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
+        </tr><tr data-row="eft-e3475f64bd">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$155.85</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-e3475f64bd" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-e3475f64bd" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-e3475f64bd" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-2c96fccfcc">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$123.79</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-2c96fccfcc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-2c96fccfcc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-2c96fccfcc" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-a17bd7b52d">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$118.96</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-a17bd7b52d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-a17bd7b52d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-a17bd7b52d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
         </tr><tr data-row="eft-0fd424b236">
             <td class="date-col">04/07/2026</td>
             <td><span class="payer-badge eft-badge">DDPAR</span></td>
@@ -2927,6 +2963,126 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-0fd424b236" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
+        </tr><tr data-row="eft-ed96b8ff9d">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$111.39</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-ed96b8ff9d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-ed96b8ff9d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-ed96b8ff9d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-520bbbc119">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$108.08</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-520bbbc119" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-520bbbc119" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-520bbbc119" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-4bca5d4cab">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$99.54</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4bca5d4cab" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4bca5d4cab" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4bca5d4cab" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-86cf37d2f4">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$96.40</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-86cf37d2f4" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-86cf37d2f4" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-86cf37d2f4" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-cc4e62ec97">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$92.99</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-cc4e62ec97" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-cc4e62ec97" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-cc4e62ec97" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
         </tr><tr data-row="eft-2452366d16">
             <td class="date-col">04/07/2026</td>
             <td><span class="payer-badge eft-badge">DELTA DENTAL AR</span></td>
@@ -2950,6 +3106,198 @@
             </td>
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-2452366d16" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-e86ff63fa5">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$84.10</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-e86ff63fa5" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-e86ff63fa5" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-e86ff63fa5" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-019244c71b">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$65.17</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-019244c71b" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-019244c71b" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-019244c71b" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-0c2f389cdc">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$60.70</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-0c2f389cdc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-0c2f389cdc" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-0c2f389cdc" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-7c42f21782">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$58.42</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-7c42f21782" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-7c42f21782" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-7c42f21782" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-4d4e7a0d5f">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$56.05</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-4d4e7a0d5f" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-4d4e7a0d5f" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-4d4e7a0d5f" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-3677f02242">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$50.79</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-3677f02242" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-3677f02242" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-3677f02242" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-916a0a2697">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$38.49</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-916a0a2697" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-916a0a2697" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-916a0a2697" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-cd14c879c8">
+            <td class="date-col">04/07/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$26.10</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-cd14c879c8" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-cd14c879c8" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-cd14c879c8" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="eft-eb3f919fba">
             <td class="date-col">04/07/2026</td>
@@ -3588,7 +3936,7 @@
         </tr><tr class="date-header">
             <td colspan="8">
                 <span class="date-label">04/02/2026</span>
-                <span class="date-stats">34 EFTs &bull; <strong>$10,181.65</strong></span>
+                <span class="date-stats">35 EFTs &bull; <strong>$10,286.65</strong></span>
             </td>
         </tr><tr data-row="eft-488209203a">
             <td class="date-col">04/02/2026</td>
@@ -4093,6 +4441,30 @@
             </td>
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-eft-5e4fe0b8fe" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="eft-50244d775a">
+            <td class="date-col">04/02/2026</td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
+            <td class="amount">$105.00</td>
+            <td class="ach-col">231998274</td>
+            <td class="desc-col">ROSS M WEZMAR DDS</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-eft-50244d775a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="eft-50244d775a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-eft-50244d775a" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="eft-ce3d605dc3">
             <td class="date-col">04/02/2026</td>

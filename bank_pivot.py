@@ -89,14 +89,12 @@ incoming = df[df['Amount'] > 0].copy()
 outgoing = df[df['Amount'] < 0].copy()
 
 deposit_sources = ['BANKCARD-8740', 'MERCHANT BANKCD', 'SYNCHRONY BANK']
-lockbox_sources = ['PNC-ECHO']
+# PNC-ECHO is United Concordia — classified as EFT, not Lockbox
 
 def classify(row):
     name = row['From Account Name']
     if name in deposit_sources:
         return 'Deposits'
-    elif name in lockbox_sources:
-        return 'Lockbox'
     else:
         return 'EFT'
 
@@ -122,6 +120,8 @@ def friendly_name(row):
         return f'Merchant ({ach_id})'
     if from_name == 'SYNCHRONY BANK':
         return 'Synchrony (CareCredit)'
+    if pd.notna(from_name) and ('PNC-ECHO' in str(from_name) or from_name == 'PNC'):
+        return 'United Concordia'
     return from_name
 
 incoming['Payer'] = incoming.apply(friendly_name, axis=1)
@@ -242,7 +242,7 @@ def detail_eft_rows(data):
             sid = stable_id('eft', date_key, row['From Account Name'], row['Amount'], row['ACH Individual ID'])
             html += f"""<tr data-row="{sid}">
             <td class="date-col">{date_display}</td>
-            <td><span class="payer-badge eft-badge">{row['From Account Name']}</span></td>
+            <td><span class="payer-badge eft-badge">{row.get('Payer', row['From Account Name'])}</span></td>
             <td class="amount">{fmt_money(row['Amount'])}</td>
             <td class="ach-col">{row['ACH Individual ID']}</td>
             <td class="desc-col">{row['ACH Description']}</td>
@@ -286,7 +286,7 @@ def detail_lockbox_rows(data):
             sid = stable_id('lb', date_key, row['From Account Name'], row['Amount'], row['ACH Individual ID'])
             html += f"""<tr data-row="{sid}">
             <td class="date-col">{date_display}</td>
-            <td><span class="payer-badge lockbox-badge">PNC Lockbox</span></td>
+            <td><span class="payer-badge eft-badge">United Concordia</span></td>
             <td class="amount">{fmt_money(row['Amount'])}</td>
             <td class="ach-col">{row['ACH Individual ID']}</td>
             <td class="desc-col">{row['ACH Description']}</td>
@@ -486,9 +486,9 @@ def find_bank_general(acct_num, acct_label):
 bg_ppo = find_bank_general('6881784489', 'PPO')
 bg_med = find_bank_general('6881784534', 'Medicaid')
 
-# Check Deposits from Build Report (PNC-ECHO rows)
-check_deposits = incoming[incoming['Category'] == 'Lockbox']
-total_check_deposits = check_deposits['Amount'].sum()
+# PNC-ECHO is now classified as EFT (United Concordia), no separate check deposits section
+check_deposits = pd.DataFrame()  # empty — PNC moved to EFT
+total_check_deposits = 0
 
 def detail_check_deposit_rows(data):
     grouped = data.groupby(data['Date'].dt.strftime('%Y-%m-%d'))
@@ -509,7 +509,7 @@ def detail_check_deposit_rows(data):
             sid = stable_id('chk', date_key, row['From Account Name'], row['Amount'], row['ACH Individual ID'])
             html += f"""<tr data-row="{sid}">
             <td class="date-col">{date_display}</td>
-            <td><span class="payer-badge eft-badge">{row['From Account Name']}</span></td>
+            <td><span class="payer-badge eft-badge">{row.get('Payer', row['From Account Name'])}</span></td>
             <td class="amount">{fmt_money(row['Amount'])}</td>
             <td class="ach-col">{row['ACH Individual ID']}</td>
             <td class="desc-col">{row['ACH Description']}</td>
@@ -526,7 +526,7 @@ def detail_check_deposit_rows(data):
         </tr>"""
     return html
 
-chk_dep_rows = detail_check_deposit_rows(check_deposits)
+chk_dep_rows = detail_check_deposit_rows(check_deposits) if not check_deposits.empty else ""
 
 # Build overview for each account — EFT and Lockbox only
 def build_acct_overview(bg_data):
@@ -1188,7 +1188,6 @@ html = f"""<!DOCTYPE html>
     <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">{num_dep_checks}</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">{len(outgoing_ins)}</span></button>
     <button class="tab-btn" onclick="showTab('deposits')">Card Deposits <span class="tab-count">{len(deposits)}</span></button>
-    <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">{len(check_deposits)}</span></button>
 </div>
 
 <!-- ==================== OVERVIEW TAB ==================== -->
@@ -1198,7 +1197,7 @@ html = f"""<!DOCTYPE html>
         <h3>How to Use This Report</h3>
         <ul>
             <li><span class="step-icon">1</span> <strong>CARD DEPOSITS</strong> (green) = Credit card batches by location. Match to CC batch reports in Open Dental.</li>
-            <li><span class="step-icon">2</span> <strong>PNC</strong> (teal) = PNC-ECHO cash deposits showing on bank statement. Match to EOBs.</li>
+            <li><span class="step-icon">2</span> <strong>United Concordia</strong> = PNC-ECHO EFT payments. Now included under PPO EFT tab.</li>
             <li><span class="step-icon">3</span> <strong>PPO EFT / MEDICAID EFT</strong> (blue) = Insurance electronic payments. Match to ERA/835 files.</li>
             <li><span class="step-icon">4</span> <strong>LOCKBOX PPO / MEDICAID</strong> (purple) = Lockbox detail with check numbers. Use to match individual checks.</li>
             <li><span class="step-icon">!</span> <strong>OUTGOING</strong> (red) = Insurance debits only. Review for accuracy.</li>
@@ -1412,31 +1411,6 @@ html = f"""<!DOCTYPE html>
     </div>
 </div>
 
-<!-- ==================== CHECK DEPOSITS TAB ==================== -->
-<div id="tab-checkdep" class="tab-content">
-    <div class="detail-block">
-        <div class="detail-header dh-checkdep">
-            <div class="detail-icon">🏦</div>
-            <div>
-                <div class="detail-title">PNC — Cash Deposits</div>
-                <div class="detail-sub">PNC-ECHO cash deposits — match to EOBs and post in Open Dental</div>
-            </div>
-            <div class="detail-total">{fmt_money(total_check_deposits)}</div>
-        </div>
-        <table>
-            <thead><tr>
-                <th style="width:90px">Date</th>
-                <th>Payer</th>
-                <th style="width:110px">Amount</th>
-                <th>ACH Individual ID</th>
-                <th>Payer Name</th>
-                <th style="width:120px">EOB Downloaded</th>
-                <th style="width:180px">Remarks</th>
-            </tr></thead>
-            <tbody>{chk_dep_rows}</tbody>
-        </table>
-    </div>
-</div>
 
 <!-- ==================== EFT TAB ==================== -->
 <div id="tab-eft" class="tab-content">
