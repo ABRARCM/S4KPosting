@@ -1279,8 +1279,9 @@ html = f"""<!DOCTYPE html>
     </div>
 
     <!-- LOCKBOX & DEPOSITS RECONCILIATION -->
+    <!-- LOCKBOX SUMMARY -->
     <div class="recon-block" style="margin-top:16px">
-        <div class="recon-header">Lockbox & Deposited Checks Summary</div>
+        <div class="recon-header">Lockbox Summary</div>
         <table class="overview-table">
             <thead><tr>
                 <th>Source</th>
@@ -1303,16 +1304,24 @@ html = f"""<!DOCTYPE html>
                     <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid)}</strong></td>
                     <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid)}</strong></td>
                 </tr>
-                <tr><td colspan="3" style="height:12px;border:none"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- DEPOSITED CHECKS SUMMARY -->
+    <div class="recon-block" style="margin-top:16px">
+        <div class="recon-header">Deposited Checks Summary</div>
+        <table class="overview-table">
+            <thead><tr>
+                <th>Source</th>
+                <th style="text-align:center">Count</th>
+                <th style="text-align:right">Total Amount</th>
+            </tr></thead>
+            <tbody>
                 <tr>
                     <td><span class="cat-badge cat-deposits">Deposited Checks</span></td>
                     <td class="count-col">{num_dep_checks}</td>
                     <td class="amount">{fmt_money(total_dep_checks)}</td>
-                </tr>
-                <tr style="border-top:2px solid #023E8A">
-                    <td><strong>Grand Total</strong></td>
-                    <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid) + num_dep_checks}</strong></td>
-                    <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid + total_dep_checks)}</strong></td>
                 </tr>
             </tbody>
         </table>
