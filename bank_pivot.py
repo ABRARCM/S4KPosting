@@ -1267,6 +1267,51 @@ html = f"""<!DOCTYPE html>
             </tbody>
         </table>
     </div>
+
+    <!-- LOCKBOX & DEPOSITS RECONCILIATION -->
+    <div class="recon-block" style="margin-top:16px">
+        <div class="recon-header">Lockbox & Deposited Checks Summary</div>
+        <table class="overview-table">
+            <thead><tr>
+                <th>Source</th>
+                <th style="text-align:center">Count</th>
+                <th style="text-align:right">Total Amount</th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">Lockbox PPO #11234</span></td>
+                    <td class="count-col">{len(lb_ppo)}</td>
+                    <td class="amount">{fmt_money(total_lb_ppo)}</td>
+                </tr>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">Lockbox Medicaid #11233</span></td>
+                    <td class="count-col">{len(lb_medicaid)}</td>
+                    <td class="amount">{fmt_money(total_lb_medicaid)}</td>
+                </tr>
+                <tr style="border-top:2px solid #023E8A">
+                    <td><strong>Total Lockbox</strong></td>
+                    <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid)}</strong></td>
+                    <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid)}</strong></td>
+                </tr>
+                <tr><td colspan="3" style="height:12px;border:none"></td></tr>
+                <tr>
+                    <td><span class="cat-badge cat-deposits">Deposited Checks</span></td>
+                    <td class="count-col">{num_dep_checks}</td>
+                    <td class="amount">{fmt_money(total_dep_checks)}</td>
+                </tr>
+                <tr>
+                    <td><span class="cat-badge cat-deposits">Card Deposits</span></td>
+                    <td class="count-col">{len(deposits)}</td>
+                    <td class="amount">{fmt_money(total_deposits)}</td>
+                </tr>
+                <tr style="border-top:2px solid #023E8A">
+                    <td><strong>Grand Total (All Deposits)</strong></td>
+                    <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid) + num_dep_checks + len(deposits)}</strong></td>
+                    <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid + total_dep_checks + total_deposits)}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- ==================== BANK DEPOSITS TAB ==================== -->
