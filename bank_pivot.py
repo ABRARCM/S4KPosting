@@ -1309,15 +1309,10 @@ html = f"""<!DOCTYPE html>
                     <td class="count-col">{num_dep_checks}</td>
                     <td class="amount">{fmt_money(total_dep_checks)}</td>
                 </tr>
-                <tr>
-                    <td><span class="cat-badge cat-deposits">Card Deposits</span></td>
-                    <td class="count-col">{len(deposits)}</td>
-                    <td class="amount">{fmt_money(total_deposits)}</td>
-                </tr>
                 <tr style="border-top:2px solid #023E8A">
-                    <td><strong>Grand Total (All Deposits)</strong></td>
-                    <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid) + num_dep_checks + len(deposits)}</strong></td>
-                    <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid + total_dep_checks + total_deposits)}</strong></td>
+                    <td><strong>Grand Total</strong></td>
+                    <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid) + num_dep_checks}</strong></td>
+                    <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid + total_dep_checks)}</strong></td>
                 </tr>
             </tbody>
         </table>
