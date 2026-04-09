@@ -804,7 +804,7 @@ html = f"""<!DOCTYPE html>
         gap: 20px;
         box-shadow: 0 4px 20px rgba(2, 62, 138, 0.3);
     }}
-    .header img {{ height: 50px; }}
+    .header img {{ height: 46px; background: white; padding: 4px 8px; border-radius: 8px; }}
     .header h1 {{ font-size: 28px; font-weight: 800; }}
     .header .subtitle {{ font-size: 14px; opacity: 0.85; }}
     .header .date-range {{
