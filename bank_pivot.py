@@ -783,7 +783,7 @@ html = f"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bank Deposits Guide — {date_min} to {date_max}</title>
+<title>Smiles 4 Keeps PA — Bank Posting — {date_min} to {date_max}</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
     * {{ margin: 0; padding: 0; box-sizing: border-box; }}
@@ -1167,7 +1167,7 @@ html = f"""<!DOCTYPE html>
 <div class="header">
     <img src="https://abrahealthgroup.com/wp-content/uploads/2022/09/Asset-48@4x-copy.png" alt="Abra Health">
     <div>
-        <h1>Bank Deposits Guide</h1>
+        <h1>Smiles 4 Keeps PA — Bank Posting</h1>
         <div class="subtitle">What needs to be posted in Open Dental</div>
     </div>
     <div class="date-range">{date_min} - {date_max}</div>
