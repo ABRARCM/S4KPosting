@@ -587,6 +587,98 @@ match_ppo_lb = match_badge(ppo_lb, total_lb_ppo)
 match_med_lb = match_badge(med_lb, total_lb_medicaid)
 
 
+# === DEPOSITED CHECKS (from CitiBank Deposited Checks folder) ===
+# These are the individual checks that make up the "Deposit" line items in the Bank General statement.
+# Each CSV file = one deposit slip with individual check breakdowns.
+DEPOSITED_CHECKS_PATH = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/Deposited Checks"
+dep_check_files = sorted(glob.glob(f"{DEPOSITED_CHECKS_PATH}/*.csv"), key=os.path.getmtime, reverse=True)
+
+all_dep_checks = []
+for dcf in dep_check_files:
+    try:
+        dc = pd.read_csv(dcf)
+        dc.columns = dc.columns.str.strip()
+        # First row is "Deposit Slip" with total — extract deposit date/total info
+        slip_row = dc[dc['Item'] == 'Deposit Slip']
+        deposit_total = 0
+        deposit_acct = ''
+        if not slip_row.empty:
+            amt_str = str(slip_row.iloc[0].get('Amount', '0'))
+            amt_str = amt_str.replace('"', '').replace(',', '')
+            deposit_total = float(amt_str) if amt_str else 0
+            deposit_acct = str(slip_row.iloc[0].get('To Account Number', ''))
+        # Get individual checks
+        checks = dc[dc['Item'] == 'Check'].copy()
+        checks['_deposit_total'] = deposit_total
+        checks['_deposit_acct'] = deposit_acct
+        checks['_source_file'] = os.path.basename(dcf)
+        # Clean amount — handle quoted amounts with commas
+        checks['Amount'] = checks['Amount'].astype(str).str.replace('"', '').str.replace(',', '')
+        checks['Amount'] = pd.to_numeric(checks['Amount'], errors='coerce')
+        checks['Check #'] = checks['Check #'].astype(str).str.strip()
+        all_dep_checks.append(checks)
+    except Exception as e:
+        print(f"Warning: Could not read {dcf}: {e}")
+
+if all_dep_checks:
+    dep_checks_df = pd.concat(all_dep_checks, ignore_index=True)
+    dep_checks_df = dep_checks_df.sort_values('Amount', ascending=False)
+else:
+    dep_checks_df = pd.DataFrame()
+
+total_dep_checks = dep_checks_df['Amount'].sum() if not dep_checks_df.empty else 0
+num_dep_checks = len(dep_checks_df)
+
+def detail_deposited_check_rows(data):
+    if data.empty:
+        return ""
+    html = ""
+    # Group by deposit slip (source file = one deposit)
+    for source_file in data['_source_file'].unique():
+        group = data[data['_source_file'] == source_file].sort_values('Amount', ascending=False)
+        slip_total = group['_deposit_total'].iloc[0]
+        slip_acct = group['_deposit_acct'].iloc[0]
+        acct_label = 'PPO' if '6881784489' in str(slip_acct) else 'Medicaid'
+        count = len(group)
+        html += f"""<tr class="date-header">
+            <td colspan="8">
+                <span class="date-label">Deposit Slip — {acct_label}</span>
+                <span class="date-stats">{count} checks &bull; Slip Total: <strong>{fmt_money(slip_total)}</strong></span>
+            </td>
+        </tr>"""
+        for _, row in group.iterrows():
+            chk_num = row['Check #'] if pd.notna(row['Check #']) and row['Check #'] != 'nan' else ''
+            from_acct = str(row.get('From Account', '')) if pd.notna(row.get('From Account')) else ''
+            routing = str(row.get('Routing Number', '')) if pd.notna(row.get('Routing Number')) else ''
+            sid = stable_id('depchk', chk_num, row['Amount'], from_acct)
+            html += f"""<tr data-row="{sid}">
+            <td class="check-col">{chk_num}</td>
+            <td class="amount">{fmt_money(row['Amount'])}</td>
+            <td class="ach-col">{from_acct}</td>
+            <td class="ach-col">{routing}</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-{sid}" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="{sid}" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-{sid}" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr>"""
+    return html
+
+dep_check_rows_html = detail_deposited_check_rows(dep_checks_df)
+
 dep_rows = detail_deposit_rows(deposits)
 eft_rows_html = detail_eft_rows(eft)
 eft_med_rows_html = detail_eft_rows(eft_medicaid)
@@ -1000,6 +1092,7 @@ html = f"""<!DOCTYPE html>
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">{len(eft_medicaid)}</span></button>
     <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">{len(lb_ppo)}</span></button>
     <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">{len(lb_medicaid)}</span></button>
+    <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">{num_dep_checks}</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">{len(outgoing_ins)}</span></button>
 </div>
 
@@ -1300,6 +1393,32 @@ html = f"""<!DOCTYPE html>
                 <th style="width:180px">Remarks</th>
             </tr></thead>
             <tbody>{lb_medicaid_rows}</tbody>
+        </table>
+    </div>
+</div>
+
+<!-- ==================== DEPOSITED CHECKS TAB ==================== -->
+<div id="tab-depchk" class="tab-content">
+    <div class="detail-block">
+        <div class="detail-header dh-deposit">
+            <div class="detail-icon">🏦</div>
+            <div>
+                <div class="detail-title">DEPOSITED CHECKS — Individual Check Breakdown</div>
+                <div class="detail-sub">Checks deposited at the bank — match to General Deposit line items</div>
+            </div>
+            <div class="detail-total">{fmt_money(total_dep_checks)}</div>
+        </div>
+        <table>
+            <thead><tr>
+                <th>Check #</th>
+                <th style="width:110px">Amount</th>
+                <th>From Account</th>
+                <th>Routing #</th>
+                <th style="width:80px">EOB</th>
+                <th style="width:100px">OD Posted</th>
+                <th style="width:180px">Remarks</th>
+            </tr></thead>
+            <tbody>{dep_check_rows_html}</tbody>
         </table>
     </div>
 </div>
