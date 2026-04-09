@@ -398,12 +398,12 @@
     <button class="tab-btn" onclick="showTab('bankdep')">Deposits</button>
     <button class="tab-btn" onclick="showTab('deposits')">Card Deposits <span class="tab-count">55</span></button>
     <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">51</span></button>
-    <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">124</span></button>
+    <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">123</span></button>
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">19</span></button>
     <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">76</span></button>
     <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">12</span></button>
     <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">27</span></button>
-    <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">2</span></button>
+    <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">1</span></button>
 </div>
 
 <!-- ==================== OVERVIEW TAB ==================== -->
@@ -552,8 +552,8 @@
                 <tr>
                     <td><span class="cat-badge cat-eft">PPO EFT</span></td>
                     <td class="amount">$95,263.39</td>
-                    <td class="amount">$566,172.35</td>
-                    <td class="match-col"><span class="match-no">NO — diff $470,908.96</span></td>
+                    <td class="amount">$42,124.40</td>
+                    <td class="match-col"><span class="match-no">NO — diff $53,138.99</span></td>
                 </tr>
                 <tr>
                     <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
@@ -2015,7 +2015,7 @@
                 <div class="detail-title">PPO EFT — Insurance Electronic Payments</div>
                 <div class="detail-sub">Match to ERA/835 files and post insurance payments in Open Dental</div>
             </div>
-            <div class="detail-total">$566,172.35</div>
+            <div class="detail-total">$42,124.40</div>
         </div>
         <table>
             <thead><tr>
@@ -2031,31 +2031,7 @@
             <tbody><tr class="date-header">
             <td colspan="8">
                 <span class="date-label">04/08/2026</span>
-                <span class="date-stats">27 EFTs &bull; <strong>$530,226.28</strong></span>
-            </td>
-        </tr><tr data-row="eft-7290d39c57">
-            <td class="date-col">04/08/2026</td>
-            <td><span class="payer-badge eft-badge">nan</span></td>
-            <td class="amount">$524,047.95</td>
-            <td class="ach-col">nan</td>
-            <td class="desc-col">nan</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-eft-7290d39c57" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="eft-7290d39c57" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-eft-7290d39c57" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <span class="date-stats">26 EFTs &bull; <strong>$6,178.33</strong></span>
             </td>
         </tr><tr data-row="eft-0a688e890b">
             <td class="date-col">04/08/2026</td>
@@ -8239,7 +8215,7 @@
                 <div class="detail-title">OUTGOING — Debits & Returns</div>
                 <div class="detail-sub">Review for accuracy — do NOT post these as income</div>
             </div>
-            <div class="detail-total">($524,169.85)</div>
+            <div class="detail-total">($121.90)</div>
         </div>
         <table>
             <thead><tr>
@@ -8251,25 +8227,6 @@
                 <th style="width:100px">OD Posted</th>
             </tr></thead>
             <tbody><tr class="date-header">
-            <td colspan="6">
-                <span class="date-label">04/08/2026</span>
-                <span class="date-stats">1 debits &bull; <strong class="negative">($524,047.95)</strong></span>
-            </td>
-        </tr><tr data-row="out-9106fc6953">
-            <td class="date-col">04/08/2026</td>
-            <td><span class="payer-badge outgoing-badge">---</span></td>
-            <td class="amount negative">($524,047.95)</td>
-            <td class="ach-col">nan</td>
-            <td class="desc-col">nan</td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="out-9106fc6953" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-        </tr><tr class="date-header">
             <td colspan="6">
                 <span class="date-label">04/06/2026</span>
                 <span class="date-stats">1 debits &bull; <strong class="negative">($121.90)</strong></span>

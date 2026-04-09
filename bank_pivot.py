@@ -86,6 +86,17 @@ df['ACH Individual ID'] = df['ACH Individual ID'].astype(str).str.strip()
 df['ACH Description'] = df['ACH Description'].astype(str).str.strip() if 'ACH Description' in df.columns else ''
 df['ACH Entry Description'] = df['ACH Entry Description'].astype(str).str.strip() if 'ACH Entry Description' in df.columns else ''
 
+# Exclude internal funding transfers (Payment Method = "Other Transactions")
+# These are money moves between PPO and Medicaid accounts, not real payments.
+# Example: Skygen pays $524K to Medicaid → internal transfer moves it to PPO.
+# Without this filter, the transfer shows as a duplicate "nan" EFT under PPO.
+if 'Payment Method' in df.columns:
+    transfers = df['Payment Method'].astype(str).str.strip() == 'Other Transactions'
+    num_transfers = transfers.sum()
+    if num_transfers > 0:
+        print(f"Excluded {num_transfers} internal funding transfers")
+    df = df[~transfers]
+
 incoming = df[df['Amount'] > 0].copy()
 outgoing = df[df['Amount'] < 0].copy()
 
