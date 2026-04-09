@@ -312,7 +312,7 @@ def detail_outgoing_rows(data):
         date_total = group['Amount'].sum()
         date_count = len(group)
         html += f"""<tr class="date-header">
-            <td colspan="6">
+            <td colspan="7">
                 <span class="date-label">{date_display}</span>
                 <span class="date-stats">{date_count} debits &bull; <strong class="negative">({fmt_money(abs(date_total))})</strong></span>
             </td>
@@ -333,6 +333,9 @@ def detail_outgoing_rows(data):
                     <option value="no">No</option>
                     <option value="partial">Partial</option>
                 </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-{sid}" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr>"""
     return html
@@ -987,6 +990,20 @@ html = f"""<!DOCTYPE html>
         margin-left: 8px;
         white-space: nowrap;
     }}
+    .download-btn {{
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background 0.2s;
+    }}
+    .download-btn:hover {{ background: rgba(255,255,255,0.35); }}
     .detail-total {{
         margin-left: auto;
         font-size: 22px;
@@ -1369,6 +1386,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Each date shows bank deposit total vs lockbox detail total</div>
             </div>
             <div class="detail-total">{fmt_money(total_bank_dep_ppo)}</div>
+            <button class="download-btn" onclick="downloadTab('tab-bankdep','Deposits')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1414,6 +1432,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Match these to credit card batch reports in Open Dental</div>
             </div>
             <div class="detail-total">{fmt_money(total_deposits)}</div>
+            <button class="download-btn" onclick="downloadTab('tab-deposits','Card_Deposits')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1440,6 +1459,7 @@ html = f"""<!DOCTYPE html>
             </div>
             <div class="detail-total">{fmt_money(total_eft)}</div>
             <div class="detail-posted" id="posted-tab-eft">Posted: $0.00</div>
+            <button class="download-btn" onclick="downloadTab('tab-eft','PPO_EFT')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1468,6 +1488,7 @@ html = f"""<!DOCTYPE html>
             </div>
             <div class="detail-total">{fmt_money(total_eft_medicaid)}</div>
             <div class="detail-posted" id="posted-tab-eftmed">Posted: $0.00</div>
+            <button class="download-btn" onclick="downloadTab('tab-eftmed','Medicaid_EFT')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1496,6 +1517,7 @@ html = f"""<!DOCTYPE html>
             </div>
             <div class="detail-total">{fmt_money(total_lb_ppo)}</div>
             <div class="detail-posted" id="posted-tab-lbppo">Posted: $0.00</div>
+            <button class="download-btn" onclick="downloadTab('tab-lbppo','Lockbox_PPO')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1522,6 +1544,7 @@ html = f"""<!DOCTYPE html>
             </div>
             <div class="detail-total">{fmt_money(total_lb_medicaid)}</div>
             <div class="detail-posted" id="posted-tab-lbmed">Posted: $0.00</div>
+            <button class="download-btn" onclick="downloadTab('tab-lbmed','Lockbox_Medicaid')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1548,6 +1571,7 @@ html = f"""<!DOCTYPE html>
             </div>
             <div class="detail-total">{fmt_money(total_dep_checks)}</div>
             <div class="detail-posted" id="posted-tab-depchk">Posted: $0.00</div>
+            <button class="download-btn" onclick="downloadTab('tab-depchk','Deposited_Checks')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1574,6 +1598,7 @@ html = f"""<!DOCTYPE html>
                 <div class="detail-sub">Review for accuracy — do NOT post these as income</div>
             </div>
             <div class="detail-total">({fmt_money(abs(total_outgoing))})</div>
+            <button class="download-btn" onclick="downloadTab('tab-outgoing','Outgoing')">CSV</button>
         </div>
         <table>
             <thead><tr>
@@ -1583,6 +1608,7 @@ html = f"""<!DOCTYPE html>
                 <th>ACH Individual ID</th>
                 <th>Description</th>
                 <th style="width:100px">OD Posted</th>
+                <th style="width:180px">Remarks</th>
             </tr></thead>
             <tbody>{out_rows}</tbody>
         </table>
@@ -1698,6 +1724,41 @@ function updateProgress() {{
         }});
         el.textContent = 'Posted: $' + postedAmt.toLocaleString('en-US', {{minimumFractionDigits: 2, maximumFractionDigits: 2}});
     }});
+}}
+
+function downloadTab(tabId, filename) {{
+    const tab = document.getElementById(tabId);
+    if (!tab) return;
+    const table = tab.querySelector('table');
+    if (!table) return;
+    let csv = [];
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(row => {{
+        if (row.classList.contains('date-header')) return;
+        const cells = [];
+        row.querySelectorAll('th, td').forEach(cell => {{
+            let text = '';
+            const select = cell.querySelector('select');
+            const input = cell.querySelector('input');
+            if (select) {{
+                text = select.value || '';
+            }} else if (input) {{
+                text = input.value || '';
+            }} else {{
+                text = cell.textContent.trim();
+            }}
+            text = text.replace(/"/g, '""');
+            cells.push('"' + text + '"');
+        }});
+        if (cells.length > 0) csv.push(cells.join(','));
+    }});
+    const blob = new Blob([csv.join('\\n')], {{type: 'text/csv'}});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
 }}
 
 // === Real-time listeners — sync across all users ===
