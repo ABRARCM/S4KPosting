@@ -357,12 +357,32 @@ else:
 lb['Amount'] = pd.to_numeric(lb['Amount'], errors='coerce')
 lb['Processed Date'] = pd.to_datetime(lb['Processed Date'], format='%Y%m%d')
 lb['Lockbox Number'] = lb['Lockbox Number'].astype(str).str.strip()
-lb['Check Number'] = lb['Check Number'].astype(str).str.strip() if 'Check Number' in lb.columns else ''
 lb['Item Type'] = lb['Item Type'].astype(str).str.strip()
 
-# Deduplicate lockbox rows by Transaction ID + Amount
+# STEP 1: Merge check numbers from Check rows onto Coupon rows BEFORE dedup.
+# Coupon rows have amounts but no check numbers. Check rows carry the check numbers.
+# They share the same Transaction ID, so we merge check numbers onto Coupon rows first.
+if 'Transaction ID' in lb.columns:
+    chk_lookup = lb[lb['Item Type'] == 'Check'][['Transaction ID', 'Check Number', 'Check ABA/RT']].drop_duplicates('Transaction ID')
+    # For Coupon rows, replace their empty Check Number with the matched one
+    is_coupon = lb['Item Type'] == 'Coupon'
+    if is_coupon.any() and not chk_lookup.empty:
+        lb = lb.merge(chk_lookup, on='Transaction ID', how='left', suffixes=('', '_from_check'))
+        # Fill Coupon check numbers from the Check row
+        lb.loc[is_coupon, 'Check Number'] = lb.loc[is_coupon, 'Check Number_from_check']
+        lb.loc[is_coupon, 'Check ABA/RT'] = lb.loc[is_coupon, 'Check ABA/RT_from_check']
+        lb = lb.drop(columns=['Check Number_from_check', 'Check ABA/RT_from_check'], errors='ignore')
+
+# STEP 2: Keep only Coupon and Check rows with amount > 0 (exclude Corr)
+lb = lb[(lb['Item Type'].isin(['Check', 'Coupon'])) & (lb['Amount'] > 0)]
+
+# STEP 3: Deduplicate — Coupon and Check rows share same Transaction ID + Amount,
+# prefer Coupon rows (they now have the merged check numbers)
 if 'Transaction ID' in lb.columns:
     lb['_lb_dedup'] = lb['Transaction ID'].astype(str) + '|' + lb['Amount'].astype(str)
+    # Sort so Coupon comes first (preferred), then Check
+    lb = lb.sort_values('Item Type', ascending=True)  # Check < Coupon alphabetically, so reverse
+    lb = lb.sort_values('Item Type', ascending=False)  # Coupon first
     before_lb = len(lb)
     lb = lb.drop_duplicates(subset='_lb_dedup', keep='first')
     lb_dupes = before_lb - len(lb)
@@ -370,27 +390,7 @@ if 'Transaction ID' in lb.columns:
         print(f"Removed {lb_dupes} duplicate lockbox rows")
     lb = lb.drop(columns=['_lb_dedup'])
 
-# Accept both "Check" and "Coupon" item types (different lockbox export formats)
-# "Corr" = Correspondence Only (EOBs without checks) — always excluded
-# Coupon rows have amounts but no check numbers; Check rows have check numbers.
-# They share the same Transaction ID, so merge check numbers onto Coupon rows.
-lb_coupon = lb[(lb['Item Type'] == 'Coupon') & (lb['Amount'] > 0)].copy()
-lb_check_rows = lb[lb['Item Type'] == 'Check'].copy()
-
-if not lb_coupon.empty and not lb_check_rows.empty and 'Transaction ID' in lb.columns:
-    # Merge check numbers from Check rows onto Coupon rows by Transaction ID
-    chk_lookup = lb_check_rows[['Transaction ID', 'Check Number', 'Check ABA/RT']].drop_duplicates('Transaction ID')
-    lb_coupon = lb_coupon.drop(columns=['Check Number', 'Check ABA/RT'], errors='ignore')
-    lb_coupon = lb_coupon.merge(chk_lookup, on='Transaction ID', how='left')
-
-# Combine: use Coupon rows (with merged check numbers) + any Check-only rows not in Coupon set
-if not lb_coupon.empty:
-    coupon_txn_ids = set(lb_coupon['Transaction ID'].astype(str))
-    lb_check_only = lb_check_rows[~lb_check_rows['Transaction ID'].astype(str).isin(coupon_txn_ids)]
-    lb_check_only = lb_check_only[lb_check_only['Amount'] > 0]
-    lb_checks = pd.concat([lb_coupon, lb_check_only], ignore_index=True)
-else:
-    lb_checks = lb_check_rows[lb_check_rows['Amount'] > 0].copy()
+lb_checks = lb.copy()
 
 # Format check numbers as integers (avoid scientific notation like 1.000400e+09)
 lb_checks['Check Number'] = lb_checks['Check Number'].apply(
