@@ -26,7 +26,6 @@ import os
 ONEDRIVE_BASE = "/Users/Admin/Library/CloudStorage/OneDrive-ChildSmilesGroup,LLC(2)/ABRA RCM - PA/PA Posting/Citi Bank"
 MONTH_FOLDER = "04. April"
 REPORTS_BUILDER = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/Reports Builder"
-LOCAL_BUILD_REPORT = "/Users/Admin/Desktop/Claude/BANK/Build Report/April"
 
 # Classify PPO vs Medicaid by destination account
 def detect_source(row):
@@ -45,17 +44,6 @@ for rf in report_files:
     tmp['_source'] = tmp.apply(detect_source, axis=1)
     all_frames.append(tmp)
 
-# Also read local Build Report files (legacy PPO/Medicaid split format)
-local_files = sorted(glob.glob(f"{LOCAL_BUILD_REPORT}/*.csv"))
-for lf in local_files:
-    fname = os.path.basename(lf).lower()
-    print(f"Reading Local: {os.path.basename(lf)}")
-    tmp = pd.read_csv(lf)
-    if 'medicaid' in fname:
-        tmp['_source'] = 'Medicaid'
-    else:
-        tmp['_source'] = 'PPO'
-    all_frames.append(tmp)
 
 if not all_frames:
     raise FileNotFoundError("No CSV files found in OneDrive Reports Builder or local Build Report folder")
@@ -352,10 +340,9 @@ def detail_outgoing_rows(data):
 # === LOCKBOX CSV DATA ===
 # Read ALL lockbox CSVs from OneDrive + local folder, combine and deduplicate
 ONEDRIVE_LOCKBOX = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/LockBox"
-LOCAL_LOCKBOX = "/Users/Admin/Desktop/Claude/BANK/LockBox/April"
 
 lb_frames = []
-for lb_path in [ONEDRIVE_LOCKBOX, LOCAL_LOCKBOX]:
+for lb_path in [ONEDRIVE_LOCKBOX]:
     for lf in sorted(glob.glob(f"{lb_path}/*.csv")):
         print(f"Reading Lockbox: {os.path.basename(lf)}")
         tmp = pd.read_csv(lf)
@@ -467,8 +454,22 @@ def load_bank_general(path, acct_name):
     bg = bg[bg['BG_CAT'] != 'Transfer'].copy()
     return bg
 
-bg_ppo = load_bank_general("/Users/Admin/Desktop/Claude/BANK/Bank General/April/CCB_CHECKING_6881784489_08042026.csv", "PPO")
-bg_med = load_bank_general("/Users/Admin/Desktop/Claude/BANK/Bank General/April/CCB_CHECKING_6881784534_08042026.csv", "Medicaid")
+# Bank General Statements — OneDrive is primary, local is fallback until uploaded
+ONEDRIVE_GENERAL = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/General Statement"
+LOCAL_GENERAL = "/Users/Admin/Desktop/Claude/BANK/Bank General/April"
+
+def find_bank_general(acct_num, acct_label):
+    """Find the most recent bank general CSV for a given account, checking OneDrive first."""
+    for search_path in [ONEDRIVE_GENERAL, LOCAL_GENERAL]:
+        files = sorted(glob.glob(f"{search_path}/*{acct_num}*.csv"), key=os.path.getmtime, reverse=True)
+        if files:
+            print(f"Reading Bank General ({acct_label}): {os.path.basename(files[0])}")
+            return load_bank_general(files[0], acct_label)
+    print(f"Warning: No Bank General file found for {acct_label} ({acct_num})")
+    return pd.DataFrame(columns=['DATE','TYPE','DESCRIPTION','AMOUNT','BALANCE','ACCT','BG_CAT'])
+
+bg_ppo = find_bank_general('6881784489', 'PPO')
+bg_med = find_bank_general('6881784534', 'Medicaid')
 
 # Check Deposits from Build Report (PNC-ECHO rows)
 check_deposits = incoming[incoming['Category'] == 'Lockbox']
