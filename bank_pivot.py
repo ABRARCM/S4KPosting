@@ -11,12 +11,37 @@ def stable_id(prefix, *parts):
     short_hash = hashlib.md5(raw.encode()).hexdigest()[:10]
     return f"{prefix}-{short_hash}"
 
-# Read the CSVs separately
-df_ppo = pd.read_csv("/Users/Admin/Desktop/Claude/BANK/Build Report/April/04.01 to 04.07 PPO.csv")
-df_ppo['_source'] = 'PPO'
-df_medicaid = pd.read_csv("/Users/Admin/Desktop/Claude/BANK/Build Report/April/04.01 to 04.07 Medicaid.csv")
-df_medicaid['_source'] = 'Medicaid'
-df = pd.concat([df_ppo, df_medicaid], ignore_index=True)
+# ============================================================
+# DATA SOURCE: OneDrive combined CSV (both PPO + Medicaid)
+# Path: OneDrive > ABRA RCM - PA > PA Posting > Citi Bank > {Month} > Reports Builder
+# The script auto-detects PPO vs Medicaid by To Account Name:
+#   S4K Ross Wez (6881784489) = PPO
+#   S4K RWez ZBA (6881784534) = Medicaid
+# ============================================================
+ONEDRIVE_BASE = "/Users/Admin/Library/CloudStorage/OneDrive-ChildSmilesGroup,LLC(2)/ABRA RCM - PA/PA Posting/Citi Bank"
+MONTH_FOLDER = "04. April"
+REPORTS_BUILDER = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/Reports Builder"
+
+# Read the combined CSV — find the most recent file in Reports Builder
+import glob
+import os
+report_files = sorted(glob.glob(f"{REPORTS_BUILDER}/*.csv"), key=os.path.getmtime, reverse=True)
+if not report_files:
+    raise FileNotFoundError(f"No CSV files found in {REPORTS_BUILDER}")
+report_file = report_files[0]
+print(f"Reading: {report_file}")
+
+df = pd.read_csv(report_file)
+
+# Classify PPO vs Medicaid by destination account
+def detect_source(row):
+    to_acct = str(row.get('To Account Name', '')).strip()
+    from_acct = str(row.get('From Account Name', '')).strip()
+    if to_acct == 'S4K RWez ZBA' or from_acct == 'S4K RWez ZBA':
+        return 'Medicaid'
+    return 'PPO'
+
+df['_source'] = df.apply(detect_source, axis=1)
 
 # Clean columns
 df.columns = df.columns.str.strip()
