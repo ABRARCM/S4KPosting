@@ -454,19 +454,29 @@ def load_bank_general(path, acct_name):
     bg = bg[bg['BG_CAT'] != 'Transfer'].copy()
     return bg
 
-# Bank General Statements — OneDrive is primary, local is fallback until uploaded
+# Bank General Statements — read ALL CSVs per account, combine and deduplicate
 ONEDRIVE_GENERAL = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/General Statement"
-LOCAL_GENERAL = "/Users/Admin/Desktop/Claude/BANK/Bank General/April"
 
 def find_bank_general(acct_num, acct_label):
-    """Find the most recent bank general CSV for a given account, checking OneDrive first."""
-    for search_path in [ONEDRIVE_GENERAL, LOCAL_GENERAL]:
-        files = sorted(glob.glob(f"{search_path}/*{acct_num}*.csv"), key=os.path.getmtime, reverse=True)
-        if files:
-            print(f"Reading Bank General ({acct_label}): {os.path.basename(files[0])}")
-            return load_bank_general(files[0], acct_label)
-    print(f"Warning: No Bank General file found for {acct_label} ({acct_num})")
-    return pd.DataFrame(columns=['DATE','TYPE','DESCRIPTION','AMOUNT','BALANCE','ACCT','BG_CAT'])
+    """Read ALL bank general CSVs for a given account and combine them."""
+    files = sorted(glob.glob(f"{ONEDRIVE_GENERAL}/*{acct_num}*.csv"), key=os.path.getmtime)
+    if not files:
+        print(f"Warning: No Bank General file found for {acct_label} ({acct_num})")
+        return pd.DataFrame(columns=['DATE','TYPE','DESCRIPTION','AMOUNT','BALANCE','ACCT','BG_CAT'])
+    frames = []
+    for f in files:
+        print(f"Reading Bank General ({acct_label}): {os.path.basename(f)}")
+        frames.append(load_bank_general(f, acct_label))
+    combined = pd.concat(frames, ignore_index=True)
+    # Deduplicate by date + amount + description
+    combined['_bg_dedup'] = combined['DATE'].astype(str) + '|' + combined['AMOUNT'].astype(str) + '|' + combined['DESCRIPTION'].str[:40]
+    before = len(combined)
+    combined = combined.drop_duplicates(subset='_bg_dedup', keep='first')
+    dupes = before - len(combined)
+    if dupes > 0:
+        print(f"  Removed {dupes} duplicate Bank General rows")
+    combined = combined.drop(columns=['_bg_dedup'])
+    return combined
 
 bg_ppo = find_bank_general('6881784489', 'PPO')
 bg_med = find_bank_general('6881784534', 'Medicaid')
