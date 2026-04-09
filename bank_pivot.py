@@ -350,16 +350,42 @@ def detail_outgoing_rows(data):
     return html
 
 # === LOCKBOX CSV DATA ===
-lb = pd.read_csv("/Users/Admin/Desktop/Claude/BANK/LockBox/April/04.01-04.08.csv")
-lb.columns = lb.columns.str.strip()
+# Read ALL lockbox CSVs from OneDrive + local folder, combine and deduplicate
+ONEDRIVE_LOCKBOX = f"{ONEDRIVE_BASE}/{MONTH_FOLDER}/LockBox"
+LOCAL_LOCKBOX = "/Users/Admin/Desktop/Claude/BANK/LockBox/April"
+
+lb_frames = []
+for lb_path in [ONEDRIVE_LOCKBOX, LOCAL_LOCKBOX]:
+    for lf in sorted(glob.glob(f"{lb_path}/*.csv")):
+        print(f"Reading Lockbox: {os.path.basename(lf)}")
+        tmp = pd.read_csv(lf)
+        tmp.columns = tmp.columns.str.strip()
+        lb_frames.append(tmp)
+
+if lb_frames:
+    lb = pd.concat(lb_frames, ignore_index=True)
+else:
+    lb = pd.DataFrame()
+
 lb['Amount'] = pd.to_numeric(lb['Amount'], errors='coerce')
 lb['Processed Date'] = pd.to_datetime(lb['Processed Date'], format='%Y%m%d')
 lb['Lockbox Number'] = lb['Lockbox Number'].astype(str).str.strip()
-lb['Check Number'] = lb['Check Number'].astype(str).str.strip()
+lb['Check Number'] = lb['Check Number'].astype(str).str.strip() if 'Check Number' in lb.columns else ''
 lb['Item Type'] = lb['Item Type'].astype(str).str.strip()
 
-# Only Check rows with amount > 0
-lb_checks = lb[(lb['Item Type'] == 'Check') & (lb['Amount'] > 0)].copy()
+# Deduplicate lockbox rows by Transaction ID + Amount
+if 'Transaction ID' in lb.columns:
+    lb['_lb_dedup'] = lb['Transaction ID'].astype(str) + '|' + lb['Amount'].astype(str)
+    before_lb = len(lb)
+    lb = lb.drop_duplicates(subset='_lb_dedup', keep='first')
+    lb_dupes = before_lb - len(lb)
+    if lb_dupes > 0:
+        print(f"Removed {lb_dupes} duplicate lockbox rows")
+    lb = lb.drop(columns=['_lb_dedup'])
+
+# Accept both "Check" and "Coupon" item types (different lockbox export formats)
+# "Corr" = Correspondence Only (EOBs without checks) — always excluded
+lb_checks = lb[(lb['Item Type'].isin(['Check', 'Coupon'])) & (lb['Amount'] > 0)].copy()
 lb_checks = lb_checks.sort_values(['Processed Date', 'Amount'], ascending=[False, False])
 
 lb_ppo = lb_checks[lb_checks['Lockbox Number'] == '11234']
