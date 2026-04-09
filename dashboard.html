@@ -543,89 +543,90 @@
         </div>
     </div>
 
-    <!-- RECONCILIATION -->
+    <!-- EFT SUMMARY — Reports Builder -->
     <div class="recon-block">
-        <div class="recon-header">Reconciliation — Bank Statement vs Detail Tabs</div>
+        <div class="recon-header">EFT Summary — Reports Builder</div>
         <table class="overview-table">
             <thead><tr>
                 <th>Category</th>
-                <th style="text-align:right">Bank Statement</th>
-                <th style="text-align:right">Detail Tab</th>
-                <th style="text-align:center">Match</th>
-            </tr></thead>
-            <tbody>
-                <tr>
-                    <td><span class="cat-badge cat-eft">PPO EFT</span></td>
-                    <td class="amount">$111,288.51</td>
-                    <td class="amount">$42,124.40</td>
-                    <td class="match-col"><span class="match-no">NO — diff $69,164.11</span></td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
-                    <td class="amount">$2,190,369.67</td>
-                    <td class="amount">$1,666,321.72</td>
-                    <td class="match-col"><span class="match-no">NO — diff $524,047.95</span></td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-lockbox">PPO Lockbox #11234</span></td>
-                    <td class="amount">$24,030.49</td>
-                    <td class="amount">$42,170.29</td>
-                    <td class="match-col"><span class="match-no">NO — diff $18,139.80</span></td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-lockbox">Medicaid Lockbox #11233</span></td>
-                    <td class="amount">$10,620.31</td>
-                    <td class="amount">$10,666.31</td>
-                    <td class="match-col"><span class="match-no">NO — diff $46.00</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- LOCKBOX & DEPOSITS RECONCILIATION -->
-    <!-- LOCKBOX SUMMARY -->
-    <div class="recon-block" style="margin-top:16px">
-        <div class="recon-header">Lockbox Summary</div>
-        <table class="overview-table">
-            <thead><tr>
-                <th>Source</th>
                 <th style="text-align:center">Count</th>
                 <th style="text-align:right">Total Amount</th>
             </tr></thead>
             <tbody>
                 <tr>
-                    <td><span class="cat-badge cat-lockbox">Lockbox PPO #11234</span></td>
-                    <td class="count-col">130</td>
-                    <td class="amount">$42,170.29</td>
+                    <td><span class="cat-badge cat-eft">PPO EFT</span></td>
+                    <td class="count-col">123</td>
+                    <td class="amount">$42,124.40</td>
                 </tr>
                 <tr>
-                    <td><span class="cat-badge cat-lockbox">Lockbox Medicaid #11233</span></td>
+                    <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
+                    <td class="count-col">19</td>
+                    <td class="amount">$1,666,321.72</td>
+                </tr>
+                <tr style="border-top:2px solid #023E8A">
+                    <td><strong>Total EFT</strong></td>
+                    <td class="count-col"><strong>142</strong></td>
+                    <td class="amount"><strong>$1,708,446.12</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LOCKBOX RECONCILIATION — LockBox Folder vs General Statement -->
+    <div class="recon-block" style="margin-top:16px">
+        <div class="recon-header">Lockbox Reconciliation — LockBox Folder vs General Statement</div>
+        <table class="overview-table">
+            <thead><tr>
+                <th>Category</th>
+                <th style="text-align:center">Count</th>
+                <th style="text-align:right">LockBox Folder</th>
+                <th style="text-align:right">General Statement</th>
+                <th style="text-align:center">Status</th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">PPO Lockbox #11234</span></td>
+                    <td class="count-col">130</td>
+                    <td class="amount">$42,170.29</td>
+                    <td class="amount">$24,030.49</td>
+                    <td class="match-col"><span class="match-no">DIFF $18,139.80</span></td>
+                </tr>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">Medicaid Lockbox #11233</span></td>
                     <td class="count-col">14</td>
                     <td class="amount">$10,666.31</td>
+                    <td class="amount">$10,620.31</td>
+                    <td class="match-col"><span class="match-no">DIFF $46.00</span></td>
                 </tr>
                 <tr style="border-top:2px solid #023E8A">
                     <td><strong>Total Lockbox</strong></td>
                     <td class="count-col"><strong>144</strong></td>
                     <td class="amount"><strong>$52,836.60</strong></td>
+                    <td class="amount"><strong>$34,650.80</strong></td>
+                    <td class="match-col"><span class="match-no">DIFF $18,185.80</span></td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- DEPOSITED CHECKS SUMMARY -->
+    <!-- DEPOSITED CHECKS RECONCILIATION — Checks Folder vs General Statement -->
     <div class="recon-block" style="margin-top:16px">
-        <div class="recon-header">Deposited Checks Summary</div>
+        <div class="recon-header">Deposited Checks Reconciliation — Checks Folder vs General Statement</div>
         <table class="overview-table">
             <thead><tr>
-                <th>Source</th>
+                <th>Category</th>
                 <th style="text-align:center">Count</th>
-                <th style="text-align:right">Total Amount</th>
+                <th style="text-align:right">Checks Folder</th>
+                <th style="text-align:right">General Statement</th>
+                <th style="text-align:center">Status</th>
             </tr></thead>
             <tbody>
                 <tr>
                     <td><span class="cat-badge cat-deposits">Deposited Checks</span></td>
                     <td class="count-col">38</td>
                     <td class="amount">$14,644.78</td>
+                    <td class="amount">$14,644.78</td>
+                    <td class="match-col"><span class="match-yes">MATCH</span></td>
                 </tr>
             </tbody>
         </table>

@@ -656,16 +656,20 @@ total_bank_dep_ppo = bank_dep_ppo['AMOUNT'].sum()
 total_bank_dep_med = bank_dep_med['AMOUNT'].sum()
 
 # Pre-compute match badges for reconciliation
-def match_badge(bank_val, tab_val):
-    if abs(bank_val - tab_val) < 0.01:
-        return '<span class="match-yes">YES</span>'
+def match_badge(val_a, val_b):
+    if abs(val_a - val_b) < 0.01:
+        return '<span class="match-yes">MATCH</span>'
     else:
-        return f'<span class="match-no">NO — diff {fmt_money(abs(bank_val - tab_val))}</span>'
+        return f'<span class="match-no">DIFF {fmt_money(abs(val_a - val_b))}</span>'
 
-match_ppo_eft = match_badge(ppo_eft, total_eft)
-match_med_eft = match_badge(med_eft, total_eft_medicaid)
-match_ppo_lb = match_badge(ppo_lb, total_lb_ppo)
-match_med_lb = match_badge(med_lb, total_lb_medicaid)
+# General Statement totals for lockbox and deposits (per account)
+gs_lb_ppo = bg_ppo[bg_ppo['BG_CAT'] == 'Lockbox']['AMOUNT'].sum() if not bg_ppo.empty else 0
+gs_lb_med = bg_med[bg_med['BG_CAT'] == 'Lockbox']['AMOUNT'].sum() if not bg_med.empty else 0
+gs_dep_ppo = bg_ppo[bg_ppo['BG_CAT'] == 'Deposit']['AMOUNT'].sum() if not bg_ppo.empty else 0
+gs_dep_med = bg_med[bg_med['BG_CAT'] == 'Deposit']['AMOUNT'].sum() if not bg_med.empty else 0
+gs_dep_total = gs_dep_ppo + gs_dep_med
+
+# Reconciliation badges (match_dep_checks computed after deposited checks are loaded below)
 
 
 # === DEPOSITED CHECKS (from CitiBank Deposited Checks folder) ===
@@ -759,6 +763,11 @@ def detail_deposited_check_rows(data):
     return html
 
 dep_check_rows_html = detail_deposited_check_rows(dep_checks_df)
+
+# Reconciliation badges (computed after all data is loaded)
+match_lb_ppo = match_badge(total_lb_ppo, gs_lb_ppo)
+match_lb_med = match_badge(total_lb_medicaid, gs_lb_med)
+match_dep_checks = match_badge(total_dep_checks, gs_dep_total)
 
 dep_rows = detail_deposit_rows(deposits)
 eft_rows_html = detail_eft_rows(eft)
@@ -1239,89 +1248,90 @@ html = f"""<!DOCTYPE html>
         </div>
     </div>
 
-    <!-- RECONCILIATION -->
+    <!-- EFT SUMMARY — Reports Builder -->
     <div class="recon-block">
-        <div class="recon-header">Reconciliation — Bank Statement vs Detail Tabs</div>
+        <div class="recon-header">EFT Summary — Reports Builder</div>
         <table class="overview-table">
             <thead><tr>
                 <th>Category</th>
-                <th style="text-align:right">Bank Statement</th>
-                <th style="text-align:right">Detail Tab</th>
-                <th style="text-align:center">Match</th>
-            </tr></thead>
-            <tbody>
-                <tr>
-                    <td><span class="cat-badge cat-eft">PPO EFT</span></td>
-                    <td class="amount">{fmt_money(ppo_eft)}</td>
-                    <td class="amount">{fmt_money(total_eft)}</td>
-                    <td class="match-col">{match_ppo_eft}</td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
-                    <td class="amount">{fmt_money(med_eft)}</td>
-                    <td class="amount">{fmt_money(total_eft_medicaid)}</td>
-                    <td class="match-col">{match_med_eft}</td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-lockbox">PPO Lockbox #11234</span></td>
-                    <td class="amount">{fmt_money(ppo_lb)}</td>
-                    <td class="amount">{fmt_money(total_lb_ppo)}</td>
-                    <td class="match-col">{match_ppo_lb}</td>
-                </tr>
-                <tr>
-                    <td><span class="cat-badge cat-lockbox">Medicaid Lockbox #11233</span></td>
-                    <td class="amount">{fmt_money(med_lb)}</td>
-                    <td class="amount">{fmt_money(total_lb_medicaid)}</td>
-                    <td class="match-col">{match_med_lb}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- LOCKBOX & DEPOSITS RECONCILIATION -->
-    <!-- LOCKBOX SUMMARY -->
-    <div class="recon-block" style="margin-top:16px">
-        <div class="recon-header">Lockbox Summary</div>
-        <table class="overview-table">
-            <thead><tr>
-                <th>Source</th>
                 <th style="text-align:center">Count</th>
                 <th style="text-align:right">Total Amount</th>
             </tr></thead>
             <tbody>
                 <tr>
-                    <td><span class="cat-badge cat-lockbox">Lockbox PPO #11234</span></td>
-                    <td class="count-col">{len(lb_ppo)}</td>
-                    <td class="amount">{fmt_money(total_lb_ppo)}</td>
+                    <td><span class="cat-badge cat-eft">PPO EFT</span></td>
+                    <td class="count-col">{len(eft)}</td>
+                    <td class="amount">{fmt_money(total_eft)}</td>
                 </tr>
                 <tr>
-                    <td><span class="cat-badge cat-lockbox">Lockbox Medicaid #11233</span></td>
+                    <td><span class="cat-badge cat-eft">Medicaid EFT</span></td>
+                    <td class="count-col">{len(eft_medicaid)}</td>
+                    <td class="amount">{fmt_money(total_eft_medicaid)}</td>
+                </tr>
+                <tr style="border-top:2px solid #023E8A">
+                    <td><strong>Total EFT</strong></td>
+                    <td class="count-col"><strong>{len(eft) + len(eft_medicaid)}</strong></td>
+                    <td class="amount"><strong>{fmt_money(total_eft + total_eft_medicaid)}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LOCKBOX RECONCILIATION — LockBox Folder vs General Statement -->
+    <div class="recon-block" style="margin-top:16px">
+        <div class="recon-header">Lockbox Reconciliation — LockBox Folder vs General Statement</div>
+        <table class="overview-table">
+            <thead><tr>
+                <th>Category</th>
+                <th style="text-align:center">Count</th>
+                <th style="text-align:right">LockBox Folder</th>
+                <th style="text-align:right">General Statement</th>
+                <th style="text-align:center">Status</th>
+            </tr></thead>
+            <tbody>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">PPO Lockbox #11234</span></td>
+                    <td class="count-col">{len(lb_ppo)}</td>
+                    <td class="amount">{fmt_money(total_lb_ppo)}</td>
+                    <td class="amount">{fmt_money(gs_lb_ppo)}</td>
+                    <td class="match-col">{match_lb_ppo}</td>
+                </tr>
+                <tr>
+                    <td><span class="cat-badge cat-lockbox">Medicaid Lockbox #11233</span></td>
                     <td class="count-col">{len(lb_medicaid)}</td>
                     <td class="amount">{fmt_money(total_lb_medicaid)}</td>
+                    <td class="amount">{fmt_money(gs_lb_med)}</td>
+                    <td class="match-col">{match_lb_med}</td>
                 </tr>
                 <tr style="border-top:2px solid #023E8A">
                     <td><strong>Total Lockbox</strong></td>
                     <td class="count-col"><strong>{len(lb_ppo) + len(lb_medicaid)}</strong></td>
                     <td class="amount"><strong>{fmt_money(total_lb_ppo + total_lb_medicaid)}</strong></td>
+                    <td class="amount"><strong>{fmt_money(gs_lb_ppo + gs_lb_med)}</strong></td>
+                    <td class="match-col">{match_badge(total_lb_ppo + total_lb_medicaid, gs_lb_ppo + gs_lb_med)}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- DEPOSITED CHECKS SUMMARY -->
+    <!-- DEPOSITED CHECKS RECONCILIATION — Checks Folder vs General Statement -->
     <div class="recon-block" style="margin-top:16px">
-        <div class="recon-header">Deposited Checks Summary</div>
+        <div class="recon-header">Deposited Checks Reconciliation — Checks Folder vs General Statement</div>
         <table class="overview-table">
             <thead><tr>
-                <th>Source</th>
+                <th>Category</th>
                 <th style="text-align:center">Count</th>
-                <th style="text-align:right">Total Amount</th>
+                <th style="text-align:right">Checks Folder</th>
+                <th style="text-align:right">General Statement</th>
+                <th style="text-align:center">Status</th>
             </tr></thead>
             <tbody>
                 <tr>
                     <td><span class="cat-badge cat-deposits">Deposited Checks</span></td>
                     <td class="count-col">{num_dep_checks}</td>
                     <td class="amount">{fmt_money(total_dep_checks)}</td>
+                    <td class="amount">{fmt_money(gs_dep_total)}</td>
+                    <td class="match-col">{match_dep_checks}</td>
                 </tr>
             </tbody>
         </table>
