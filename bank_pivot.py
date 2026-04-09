@@ -471,8 +471,10 @@ def find_bank_general(acct_num, acct_label):
         print(f"Reading Bank General ({acct_label}): {os.path.basename(f)}")
         frames.append(load_bank_general(f, acct_label))
     combined = pd.concat(frames, ignore_index=True)
-    # Deduplicate by date + amount + description
-    combined['_bg_dedup'] = combined['DATE'].astype(str) + '|' + combined['AMOUNT'].astype(str) + '|' + combined['DESCRIPTION'].str[:40]
+    # Deduplicate by date + amount only.
+    # Same transaction can have different description formats across statement files
+    # (e.g., "ACH ELECTRONIC CREDIT..." vs "ACH-ZP SKYGENOPT510TRN...")
+    combined['_bg_dedup'] = combined['DATE'].astype(str) + '|' + combined['AMOUNT'].astype(str)
     before = len(combined)
     combined = combined.drop_duplicates(subset='_bg_dedup', keep='first')
     dupes = before - len(combined)
