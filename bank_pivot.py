@@ -804,7 +804,7 @@ html = f"""<!DOCTYPE html>
         gap: 20px;
         box-shadow: 0 4px 20px rgba(2, 62, 138, 0.3);
     }}
-    .header img {{ height: 46px; background: white; padding: 4px 8px; border-radius: 8px; }}
+    .header img {{ height: 50px; }}
     .header h1 {{ font-size: 28px; font-weight: 800; }}
     .header .subtitle {{ font-size: 14px; opacity: 0.85; }}
     .header .date-range {{
@@ -1165,7 +1165,7 @@ html = f"""<!DOCTYPE html>
 <body>
 
 <div class="header">
-    <img src="https://abrahealthgroup.com/wp-content/uploads/2022/08/Group-556.png" alt="Abra Health">
+    <img src="https://abrahealthgroup.com/wp-content/uploads/2022/09/Asset-48@4x-copy.png" alt="Abra Health">
     <div>
         <h1>Bank Deposits Guide</h1>
         <div class="subtitle">What needs to be posted in Open Dental</div>
