@@ -402,7 +402,7 @@
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">19</span></button>
     <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">76</span></button>
     <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">12</span></button>
-    <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">27</span></button>
+    <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">38</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">1</span></button>
 </div>
 
@@ -7558,7 +7558,7 @@
                 <div class="detail-title">DEPOSITED CHECKS — Individual Check Breakdown</div>
                 <div class="detail-sub">Checks deposited at the bank — match to General Deposit line items</div>
             </div>
-            <div class="detail-total">$9,292.50</div>
+            <div class="detail-total">$14,644.78</div>
         </div>
         <table>
             <thead><tr>
@@ -7571,6 +7571,563 @@
                 <th style="width:180px">Remarks</th>
             </tr></thead>
             <tbody><tr class="date-header">
+            <td colspan="8">
+                <span class="date-label">Deposit Slip — PPO</span>
+                <span class="date-stats">24 checks &bull; Slip Total: <strong>$8,640.88</strong></span>
+            </td>
+        </tr><tr data-row="depchk-b9b1f91af0">
+            <td class="check-col">24009608.0</td>
+            <td class="amount">$1,964.20</td>
+            <td class="ach-col">38208384.0</td>
+            <td class="ach-col">31100209.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-b9b1f91af0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-b9b1f91af0" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-b9b1f91af0" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-1577153900">
+            <td class="check-col">52216089.0</td>
+            <td class="amount">$957.00</td>
+            <td class="ach-col">9822.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-1577153900" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-1577153900" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-1577153900" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-ee2f531c5e">
+            <td class="check-col">397410436.0</td>
+            <td class="amount">$705.00</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-ee2f531c5e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-ee2f531c5e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-ee2f531c5e" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-a1c6f77a9e">
+            <td class="check-col">52260394.0</td>
+            <td class="amount">$617.20</td>
+            <td class="ach-col">9822.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-a1c6f77a9e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-a1c6f77a9e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-a1c6f77a9e" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-36255c1c2a">
+            <td class="check-col">52304955.0</td>
+            <td class="amount">$452.00</td>
+            <td class="ach-col">9822.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-36255c1c2a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-36255c1c2a" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-36255c1c2a" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-f5ddd4bda9">
+            <td class="check-col">63570814.0</td>
+            <td class="amount">$449.60</td>
+            <td class="ach-col">38208608.0</td>
+            <td class="ach-col">31100209.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-f5ddd4bda9" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-f5ddd4bda9" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-f5ddd4bda9" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-057d14e0d2">
+            <td class="check-col">397410435.0</td>
+            <td class="amount">$447.20</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-057d14e0d2" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-057d14e0d2" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-057d14e0d2" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-58f66be23e">
+            <td class="check-col">20400326.0</td>
+            <td class="amount">$412.60</td>
+            <td class="ach-col">9819.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-58f66be23e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-58f66be23e" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-58f66be23e" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-f269cc658d">
+            <td class="check-col">63599275.0</td>
+            <td class="amount">$394.20</td>
+            <td class="ach-col">38208608.0</td>
+            <td class="ach-col">31100209.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-f269cc658d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-f269cc658d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-f269cc658d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-b498414146">
+            <td class="check-col">398271262.0</td>
+            <td class="amount">$302.00</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-b498414146" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-b498414146" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-b498414146" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-aaeb755caa">
+            <td class="check-col">23988206.0</td>
+            <td class="amount">$275.10</td>
+            <td class="ach-col">38208384.0</td>
+            <td class="ach-col">31100209.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-aaeb755caa" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-aaeb755caa" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-aaeb755caa" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-ccd729e190">
+            <td class="check-col">2149745.0</td>
+            <td class="amount">$274.20</td>
+            <td class="ach-col">4670308330.0</td>
+            <td class="ach-col">21407912.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-ccd729e190" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-ccd729e190" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-ccd729e190" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-31ea4d8efe">
+            <td class="check-col">396607057.0</td>
+            <td class="amount">$210.00</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-31ea4d8efe" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-31ea4d8efe" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-31ea4d8efe" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-4e19f9e3ad">
+            <td class="check-col">1359527585.0</td>
+            <td class="amount">$171.07</td>
+            <td class="ach-col">5008023204.0</td>
+            <td class="ach-col">101219017.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-4e19f9e3ad" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-4e19f9e3ad" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-4e19f9e3ad" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-7268f9d97d">
+            <td class="check-col">63583783.0</td>
+            <td class="amount">$158.40</td>
+            <td class="ach-col">38208608.0</td>
+            <td class="ach-col">31100209.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-7268f9d97d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-7268f9d97d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-7268f9d97d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-bdd3bccc6d">
+            <td class="check-col">18115980.0</td>
+            <td class="amount">$128.60</td>
+            <td class="ach-col">9820.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-bdd3bccc6d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-bdd3bccc6d" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-bdd3bccc6d" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-800c82cd90">
+            <td class="check-col">2149631.0</td>
+            <td class="amount">$116.91</td>
+            <td class="ach-col">4670308330.0</td>
+            <td class="ach-col">21407912.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-800c82cd90" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-800c82cd90" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-800c82cd90" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-31b55e4da1">
+            <td class="check-col">23008117.0</td>
+            <td class="amount">$112.00</td>
+            <td class="ach-col">1114430.0</td>
+            <td class="ach-col">43301601.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-31b55e4da1" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-31b55e4da1" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-31b55e4da1" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-19e80013f8">
+            <td class="check-col">767417461.0</td>
+            <td class="amount">$105.00</td>
+            <td class="ach-col">7480795058.0</td>
+            <td class="ach-col">42100272.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-19e80013f8" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-19e80013f8" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-19e80013f8" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-9fbcc9ee66">
+            <td class="check-col">397277271.0</td>
+            <td class="amount">$97.00</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-9fbcc9ee66" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-9fbcc9ee66" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-9fbcc9ee66" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-426aaabd20">
+            <td class="check-col">397113021.0</td>
+            <td class="amount">$82.00</td>
+            <td class="ach-col">1669508612.0</td>
+            <td class="ach-col">44115126.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-426aaabd20" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-426aaabd20" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-426aaabd20" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-b08f8e8eaf">
+            <td class="check-col">23033742.0</td>
+            <td class="amount">$79.60</td>
+            <td class="ach-col">1114430.0</td>
+            <td class="ach-col">43301601.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-b08f8e8eaf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-b08f8e8eaf" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-b08f8e8eaf" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-6ac05dd195">
+            <td class="check-col">18115982.0</td>
+            <td class="amount">$70.00</td>
+            <td class="ach-col">9820.0</td>
+            <td class="ach-col">11900445.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-6ac05dd195" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-6ac05dd195" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-6ac05dd195" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr data-row="depchk-4ab6a845ad">
+            <td class="check-col">5103.0</td>
+            <td class="amount">$60.00</td>
+            <td class="ach-col">1390008752245.0</td>
+            <td class="ach-col">31309123.0</td>
+            <td class="posted-col">
+                <select class="posted-select eob-select" data-row="eob-depchk-4ab6a845ad" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </td>
+            <td class="posted-col">
+                <select class="posted-select" data-row="depchk-4ab6a845ad" onchange="updateStatus(this)">
+                    <option value="">--</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                    <option value="partial">Partial</option>
+                </select>
+            </td>
+            <td class="remarks-col">
+                <input type="text" class="remarks-input" data-row="rmk-depchk-4ab6a845ad" placeholder="Add remarks..." onchange="saveRemark(this)">
+            </td>
+        </tr><tr class="date-header">
             <td colspan="8">
                 <span class="date-label">Deposit Slip — PPO</span>
                 <span class="date-stats">14 checks &bull; Slip Total: <strong>$6,003.90</strong></span>
@@ -7896,310 +8453,6 @@
             </td>
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-depchk-f7a4a80a1a" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr class="date-header">
-            <td colspan="8">
-                <span class="date-label">Deposit Slip — PPO</span>
-                <span class="date-stats">13 checks &bull; Slip Total: <strong>$3,288.60</strong></span>
-            </td>
-        </tr><tr data-row="depchk-31c237f379">
-            <td class="check-col">397663515.0</td>
-            <td class="amount">$875.20</td>
-            <td class="ach-col">1669508612.0</td>
-            <td class="ach-col">44115126.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-31c237f379" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-31c237f379" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-31c237f379" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-c93a8a7eab">
-            <td class="check-col">31115754.0</td>
-            <td class="amount">$528.00</td>
-            <td class="ach-col">4942186784.0</td>
-            <td class="ach-col">121000248.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-c93a8a7eab" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-c93a8a7eab" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-c93a8a7eab" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-91c01724bb">
-            <td class="check-col">397801205.0</td>
-            <td class="amount">$437.50</td>
-            <td class="ach-col">1669508612.0</td>
-            <td class="ach-col">44115126.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-91c01724bb" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-91c01724bb" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-91c01724bb" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-4087d5f827">
-            <td class="check-col">11303191.0</td>
-            <td class="amount">$295.00</td>
-            <td class="ach-col">755158927.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-4087d5f827" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-4087d5f827" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-4087d5f827" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-b8da503d28">
-            <td class="check-col">32389411.0</td>
-            <td class="amount">$209.00</td>
-            <td class="ach-col">1001175.0</td>
-            <td class="ach-col">11000138.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-b8da503d28" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-b8da503d28" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-b8da503d28" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-e968f73e00">
-            <td class="check-col">668887803.0</td>
-            <td class="amount">$152.00</td>
-            <td class="ach-col">735280627.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-e968f73e00" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-e968f73e00" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-e968f73e00" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-45a0b3867d">
-            <td class="check-col">668926450.0</td>
-            <td class="amount">$133.00</td>
-            <td class="ach-col">735280627.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-45a0b3867d" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-45a0b3867d" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-45a0b3867d" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-8dac87b18c">
-            <td class="check-col">668887132.0</td>
-            <td class="amount">$125.95</td>
-            <td class="ach-col">735280627.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-8dac87b18c" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-8dac87b18c" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-8dac87b18c" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-67372060d6">
-            <td class="check-col">11292434.0</td>
-            <td class="amount">$115.20</td>
-            <td class="ach-col">755158927.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-67372060d6" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-67372060d6" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-67372060d6" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-1aff133566">
-            <td class="check-col">32387996.0</td>
-            <td class="amount">$113.00</td>
-            <td class="ach-col">1001175.0</td>
-            <td class="ach-col">11000138.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-1aff133566" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-1aff133566" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-1aff133566" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-71dacaced7">
-            <td class="check-col">1359915435.0</td>
-            <td class="amount">$109.20</td>
-            <td class="ach-col">5008023204.0</td>
-            <td class="ach-col">101219017.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-71dacaced7" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-71dacaced7" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-71dacaced7" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-17e01162e3">
-            <td class="check-col">11325856.0</td>
-            <td class="amount">$108.00</td>
-            <td class="ach-col">755158927.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-17e01162e3" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-17e01162e3" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-17e01162e3" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="depchk-701f4abe56">
-            <td class="check-col">668928630.0</td>
-            <td class="amount">$87.55</td>
-            <td class="ach-col">735280627.0</td>
-            <td class="ach-col">21309379.0</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-depchk-701f4abe56" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="depchk-701f4abe56" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-depchk-701f4abe56" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr></tbody>
         </table>
