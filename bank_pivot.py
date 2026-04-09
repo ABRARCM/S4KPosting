@@ -359,36 +359,16 @@ lb['Processed Date'] = pd.to_datetime(lb['Processed Date'], format='%Y%m%d')
 lb['Lockbox Number'] = lb['Lockbox Number'].astype(str).str.strip()
 lb['Item Type'] = lb['Item Type'].astype(str).str.strip()
 
-# STEP 1: Merge check numbers from Check rows onto Coupon rows BEFORE dedup.
-# Coupon rows have amounts but no check numbers. Check rows carry the check numbers.
-# They share the same Transaction ID, so we merge check numbers onto Coupon rows first.
-if 'Transaction ID' in lb.columns:
-    chk_lookup = lb[lb['Item Type'] == 'Check'][['Transaction ID', 'Check Number', 'Check ABA/RT']].drop_duplicates('Transaction ID')
-    # For Coupon rows, replace their empty Check Number with the matched one
-    is_coupon = lb['Item Type'] == 'Coupon'
-    if is_coupon.any() and not chk_lookup.empty:
-        lb = lb.merge(chk_lookup, on='Transaction ID', how='left', suffixes=('', '_from_check'))
-        # Fill Coupon check numbers from the Check row
-        lb.loc[is_coupon, 'Check Number'] = lb.loc[is_coupon, 'Check Number_from_check']
-        lb.loc[is_coupon, 'Check ABA/RT'] = lb.loc[is_coupon, 'Check ABA/RT_from_check']
-        lb = lb.drop(columns=['Check Number_from_check', 'Check ABA/RT_from_check'], errors='ignore')
+# Only use Check rows (not Coupon). Check rows have the actual check numbers and amounts.
+lb = lb[(lb['Item Type'] == 'Check') & (lb['Amount'] > 0)]
 
-# STEP 2: Keep only Coupon and Check rows with amount > 0 (exclude Corr)
-lb = lb[(lb['Item Type'].isin(['Check', 'Coupon'])) & (lb['Amount'] > 0)]
-
-# STEP 3: Deduplicate — Coupon and Check rows share same Transaction ID + Amount,
-# prefer Coupon rows (they now have the merged check numbers)
+# Deduplicate by Transaction ID
 if 'Transaction ID' in lb.columns:
-    lb['_lb_dedup'] = lb['Transaction ID'].astype(str) + '|' + lb['Amount'].astype(str)
-    # Sort so Coupon comes first (preferred), then Check
-    lb = lb.sort_values('Item Type', ascending=True)  # Check < Coupon alphabetically, so reverse
-    lb = lb.sort_values('Item Type', ascending=False)  # Coupon first
     before_lb = len(lb)
-    lb = lb.drop_duplicates(subset='_lb_dedup', keep='first')
+    lb = lb.drop_duplicates(subset='Transaction ID', keep='first')
     lb_dupes = before_lb - len(lb)
     if lb_dupes > 0:
         print(f"Removed {lb_dupes} duplicate lockbox rows")
-    lb = lb.drop(columns=['_lb_dedup'])
 
 lb_checks = lb.copy()
 
