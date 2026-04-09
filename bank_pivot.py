@@ -1166,6 +1166,8 @@ html = f"""<!DOCTYPE html>
         .posted-select {{ border: 1px solid #ccc; }}
     }}
 </style>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
 
@@ -1568,6 +1570,21 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <script>
+// === Firebase Setup ===
+const firebaseConfig = {{
+    apiKey: "AIzaSyAjowKdMQsu61ID6xAXUoKxiKzRLHNlvIs",
+    authDomain: "s4kposting.firebaseapp.com",
+    databaseURL: "https://s4kposting-default-rtdb.firebaseio.com",
+    projectId: "s4kposting",
+    storageBucket: "s4kposting.firebasestorage.app",
+    messagingSenderId: "1061950818267",
+    appId: "1:1061950818267:web:dddd825e067f997e6689fe"
+}};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const statusRef = db.ref('statuses');
+const remarksRef = db.ref('remarks');
+
 function showTab(name) {{
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -1575,34 +1592,32 @@ function showTab(name) {{
     event.target.closest('.tab-btn').classList.add('active');
 }}
 
-function updateStatus(select) {{
+function applyStatusToElement(select, val) {{
     const row = select.closest('tr');
-    const val = select.value;
-
-    // Remove all status classes
     select.classList.remove('status-yes', 'status-no', 'status-partial');
-    row.classList.remove('row-yes', 'row-no', 'row-partial');
-
+    if (row) row.classList.remove('row-yes', 'row-no', 'row-partial');
     if (val) {{
+        select.value = val;
         select.classList.add('status-' + val);
-        row.classList.add('row-' + val);
+        if (row) row.classList.add('row-' + val);
+    }} else {{
+        select.value = '';
     }}
+}}
 
-    // Save to localStorage
+function updateStatus(select) {{
+    const val = select.value;
+    applyStatusToElement(select, val);
     const rowId = select.dataset.row;
-    const stored = JSON.parse(localStorage.getItem('bankPivotStatus') || '{{}}');
-    stored[rowId] = val;
-    localStorage.setItem('bankPivotStatus', JSON.stringify(stored));
-
+    statusRef.child(rowId).set(val || null);
     updateProgress();
 }}
 
 function saveRemark(input) {{
     const rowId = input.dataset.row;
-    const stored = JSON.parse(localStorage.getItem('bankPivotRemarks') || '{{}}');
-    stored[rowId] = input.value;
-    localStorage.setItem('bankPivotRemarks', JSON.stringify(stored));
-    if (input.value.trim()) {{
+    const val = input.value;
+    remarksRef.child(rowId).set(val || null);
+    if (val.trim()) {{
         input.classList.add('has-text');
     }} else {{
         input.classList.remove('has-text');
@@ -1610,7 +1625,8 @@ function saveRemark(input) {{
 }}
 
 function updateProgress() {{
-    const selects = document.querySelectorAll('.posted-select');
+    // Count ALL posted-select dropdowns that are NOT EOB selects (across ALL tabs)
+    const selects = document.querySelectorAll('.posted-select:not(.eob-select)');
     const total = selects.length;
     let done = 0;
     selects.forEach(s => {{ if (s.value === 'yes') done++; }});
@@ -1619,29 +1635,31 @@ function updateProgress() {{
     document.getElementById('progressText').textContent = pct + '%';
 }}
 
-// Restore saved statuses on load
+// === Real-time listeners — sync across all users ===
 window.addEventListener('DOMContentLoaded', function() {{
-    const stored = JSON.parse(localStorage.getItem('bankPivotStatus') || '{{}}');
-    Object.keys(stored).forEach(rowId => {{
-        const select = document.querySelector('.posted-select[data-row="' + rowId + '"]');
-        if (select && stored[rowId]) {{
-            select.value = stored[rowId];
-            select.classList.add('status-' + stored[rowId]);
-            const row = select.closest('tr');
-            if (row) row.classList.add('row-' + stored[rowId]);
-        }}
-    }});
-    // Restore saved remarks
-    const remarks = JSON.parse(localStorage.getItem('bankPivotRemarks') || '{{}}');
-    Object.keys(remarks).forEach(rowId => {{
-        const input = document.querySelector('.remarks-input[data-row="' + rowId + '"]');
-        if (input && remarks[rowId]) {{
-            input.value = remarks[rowId];
-            input.classList.add('has-text');
-        }}
+    statusRef.on('value', function(snapshot) {{
+        const data = snapshot.val() || {{}};
+        document.querySelectorAll('.posted-select').forEach(select => {{
+            const rowId = select.dataset.row;
+            const val = data[rowId] || '';
+            applyStatusToElement(select, val);
+        }});
+        updateProgress();
     }});
 
-    updateProgress();
+    remarksRef.on('value', function(snapshot) {{
+        const data = snapshot.val() || {{}};
+        document.querySelectorAll('.remarks-input').forEach(input => {{
+            const rowId = input.dataset.row;
+            const val = data[rowId] || '';
+            input.value = val;
+            if (val.trim()) {{
+                input.classList.add('has-text');
+            }} else {{
+                input.classList.remove('has-text');
+            }}
+        }});
+    }});
 }});
 </script>
 
