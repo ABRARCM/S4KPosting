@@ -400,8 +400,8 @@
     <button class="tab-btn" onclick="showTab('checkdep')">PNC <span class="tab-count">51</span></button>
     <button class="tab-btn" onclick="showTab('eft')">PPO EFT <span class="tab-count">123</span></button>
     <button class="tab-btn" onclick="showTab('eftmed')">Medicaid EFT <span class="tab-count">19</span></button>
-    <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">130</span></button>
-    <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">14</span></button>
+    <button class="tab-btn" onclick="showTab('lbppo')">Lockbox PPO <span class="tab-count">124</span></button>
+    <button class="tab-btn" onclick="showTab('lbmed')">Lockbox Medicaid <span class="tab-count">13</span></button>
     <button class="tab-btn" onclick="showTab('depchk')">Deposited Checks <span class="tab-count">38</span></button>
     <button class="tab-btn" onclick="showTab('outgoing')">Outgoing <span class="tab-count">1</span></button>
 </div>
@@ -586,24 +586,24 @@
             <tbody>
                 <tr>
                     <td><span class="cat-badge cat-lockbox">PPO Lockbox #11234</span></td>
-                    <td class="count-col">130</td>
-                    <td class="amount">$42,170.29</td>
+                    <td class="count-col">124</td>
+                    <td class="amount">$40,088.59</td>
                     <td class="amount">$24,030.49</td>
-                    <td class="match-col"><span class="match-no">DIFF $18,139.80</span></td>
+                    <td class="match-col"><span class="match-no">DIFF $16,058.10</span></td>
                 </tr>
                 <tr>
                     <td><span class="cat-badge cat-lockbox">Medicaid Lockbox #11233</span></td>
-                    <td class="count-col">14</td>
-                    <td class="amount">$10,666.31</td>
+                    <td class="count-col">13</td>
+                    <td class="amount">$10,619.31</td>
                     <td class="amount">$10,620.31</td>
-                    <td class="match-col"><span class="match-no">DIFF $46.00</span></td>
+                    <td class="match-col"><span class="match-no">DIFF $1.00</span></td>
                 </tr>
                 <tr style="border-top:2px solid #023E8A">
                     <td><strong>Total Lockbox</strong></td>
-                    <td class="count-col"><strong>144</strong></td>
-                    <td class="amount"><strong>$52,836.60</strong></td>
+                    <td class="count-col"><strong>137</strong></td>
+                    <td class="amount"><strong>$50,707.90</strong></td>
                     <td class="amount"><strong>$34,650.80</strong></td>
-                    <td class="match-col"><span class="match-no">DIFF $18,185.80</span></td>
+                    <td class="match-col"><span class="match-no">DIFF $16,057.10</span></td>
                 </tr>
             </tbody>
         </table>
@@ -673,7 +673,7 @@
         </tr><tr class="date-header">
             <td colspan="5">
                 <span class="date-label">04/07/2026</span>
-                <span class="date-stats">Lockbox: <strong>$3,288.60</strong> vs Detail: <strong>$5,368.30</strong> (25 checks) &bull; <span class="match-no">NO — diff $2,079.70</span> &bull; Check Deposits: <strong>$14,644.78</strong></span>
+                <span class="date-stats">Lockbox: <strong>$3,288.60</strong> vs Detail: <strong>$3,286.60</strong> (19 checks) &bull; <span class="match-no">NO — diff $2.00</span> &bull; Check Deposits: <strong>$14,644.78</strong></span>
             </td>
         </tr><tr data-row="bdep-bppo-9584d7ab80">
             <td class="date-col">04/07/2026</td>
@@ -805,7 +805,7 @@
             <tbody><tr class="date-header">
             <td colspan="5">
                 <span class="date-label">04/07/2026</span>
-                <span class="date-stats">Lockbox: <strong>$1,964.54</strong> vs Detail: <strong>$2,010.54</strong> (8 checks) &bull; <span class="match-no">NO — diff $46.00</span></span>
+                <span class="date-stats">Lockbox: <strong>$1,964.54</strong> vs Detail: <strong>$1,963.54</strong> (7 checks) &bull; <span class="match-no">NO — diff $1.00</span></span>
             </td>
         </tr><tr data-row="bdep-bmed-61147341e8">
             <td class="date-col">04/07/2026</td>
@@ -5610,7 +5610,7 @@
                 <div class="detail-title">LOCKBOX PPO — #11234</div>
                 <div class="detail-sub">PPO insurance checks — match to EOBs and post in Open Dental</div>
             </div>
-            <div class="detail-total">$42,170.29</div>
+            <div class="detail-total">$40,088.59</div>
         </div>
         <table>
             <thead><tr>
@@ -6580,43 +6580,21 @@
         </tr><tr class="date-header">
             <td colspan="6">
                 <span class="date-label">04/07/2026</span>
-                <span class="date-stats">25 checks &bull; <strong>$5,368.30</strong></span>
+                <span class="date-stats">19 checks &bull; <strong>$3,286.60</strong></span>
             </td>
-        </tr><tr data-row="lbppo-ac0ba8d988">
+        </tr><tr data-row="lbppo-c61308625f">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">397663515.0</td>
-            <td class="amount">$875.20</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-ac0ba8d988" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-ac0ba8d988" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-ac0ba8d988" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-a71ad57a4f">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">397663515</td>
             <td class="amount">$873.20</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-a71ad57a4f" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-c61308625f" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-a71ad57a4f" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-c61308625f" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6624,7 +6602,7 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-a71ad57a4f" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-c61308625f" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="lbppo-ffecfe9a40">
             <td class="date-col">04/07/2026</td>
@@ -6648,41 +6626,19 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-lbppo-ffecfe9a40" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-c0868ae128">
+        </tr><tr data-row="lbppo-b81fbe4778">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">397801205.0</td>
-            <td class="amount">$437.50</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-c0868ae128" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-c0868ae128" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-c0868ae128" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-57b6c14e7f">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">397801205</td>
             <td class="amount">$435.50</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-57b6c14e7f" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-b81fbe4778" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-57b6c14e7f" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-b81fbe4778" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6690,43 +6646,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-57b6c14e7f" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-b81fbe4778" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-65f7955463">
+        </tr><tr data-row="lbppo-44b421eb53">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">11303191.0</td>
-            <td class="amount">$295.00</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-65f7955463" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-65f7955463" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-65f7955463" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-e09e65962d">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">11303191</td>
             <td class="amount">$294.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-e09e65962d" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-44b421eb53" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-e09e65962d" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-44b421eb53" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6734,43 +6668,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-e09e65962d" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-44b421eb53" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-c3fdf0a3ab">
+        </tr><tr data-row="lbppo-d4b02f0ff7">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">32389411.0</td>
-            <td class="amount">$209.00</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-c3fdf0a3ab" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-c3fdf0a3ab" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-c3fdf0a3ab" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-f23de9ea57">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">32389411</td>
             <td class="amount">$208.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-f23de9ea57" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-d4b02f0ff7" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-f23de9ea57" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-d4b02f0ff7" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6778,43 +6690,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-f23de9ea57" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-d4b02f0ff7" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-22712b47b4">
+        </tr><tr data-row="lbppo-81f3bbb1aa">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">668887803.0</td>
-            <td class="amount">$152.00</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-22712b47b4" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-22712b47b4" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-22712b47b4" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-23cbb6e3ce">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">668887803</td>
             <td class="amount">$151.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-23cbb6e3ce" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-81f3bbb1aa" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-23cbb6e3ce" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-81f3bbb1aa" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6822,7 +6712,7 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-23cbb6e3ce" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-81f3bbb1aa" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="lbppo-0f5a081b8b">
             <td class="date-col">04/07/2026</td>
@@ -6890,41 +6780,19 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-lbppo-8a74174c49" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-6675fb0952">
+        </tr><tr data-row="lbppo-4abde3af31">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">32387996.0</td>
-            <td class="amount">$113.00</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-6675fb0952" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-6675fb0952" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-6675fb0952" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbppo-e5627c6363">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">32387996</td>
             <td class="amount">$112.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-e5627c6363" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-4abde3af31" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-e5627c6363" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-4abde3af31" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -6932,7 +6800,7 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-e5627c6363" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-4abde3af31" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr data-row="lbppo-8540d8ff87">
             <td class="date-col">04/07/2026</td>
@@ -7000,19 +6868,19 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-lbppo-0d25f6ef51" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-cf98484e0f">
+        </tr><tr data-row="lbppo-33fd30058f">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">32389411</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-cf98484e0f" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-33fd30058f" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-cf98484e0f" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-33fd30058f" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7020,21 +6888,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-cf98484e0f" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-33fd30058f" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-e3a3039f5d">
+        </tr><tr data-row="lbppo-cebc8b14be">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">32387996</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-e3a3039f5d" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-cebc8b14be" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-e3a3039f5d" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-cebc8b14be" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7042,21 +6910,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-e3a3039f5d" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-cebc8b14be" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-bdb19d5c44">
+        </tr><tr data-row="lbppo-c815532ea2">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">397663515</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-bdb19d5c44" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-c815532ea2" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-bdb19d5c44" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-c815532ea2" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7064,21 +6932,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-bdb19d5c44" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-c815532ea2" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-4d7c9933d5">
+        </tr><tr data-row="lbppo-59c3d8bb29">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">11303191</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-4d7c9933d5" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-59c3d8bb29" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-4d7c9933d5" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-59c3d8bb29" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7086,21 +6954,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-4d7c9933d5" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-59c3d8bb29" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-fa6f398123">
+        </tr><tr data-row="lbppo-0ec763e001">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">397801205</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-fa6f398123" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-0ec763e001" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-fa6f398123" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-0ec763e001" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7108,21 +6976,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-fa6f398123" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-0ec763e001" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbppo-30257d98c6">
+        </tr><tr data-row="lbppo-661240be67">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">668887803</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbppo-30257d98c6" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbppo-661240be67" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbppo-30257d98c6" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbppo-661240be67" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -7130,7 +6998,7 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbppo-30257d98c6" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbppo-661240be67" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr class="date-header">
             <td colspan="6">
@@ -8525,7 +8393,7 @@
                 <div class="detail-title">LOCKBOX MEDICAID — #11233</div>
                 <div class="detail-sub">Medicaid checks — match to EOBs and post in Open Dental</div>
             </div>
-            <div class="detail-total">$10,666.31</div>
+            <div class="detail-total">$10,619.31</div>
         </div>
         <table>
             <thead><tr>
@@ -8539,7 +8407,7 @@
             <tbody><tr class="date-header">
             <td colspan="6">
                 <span class="date-label">04/07/2026</span>
-                <span class="date-stats">8 checks &bull; <strong>$2,010.54</strong></span>
+                <span class="date-stats">7 checks &bull; <strong>$1,963.54</strong></span>
             </td>
         </tr><tr data-row="lbmed-727f1e644f">
             <td class="date-col">04/07/2026</td>
@@ -8651,41 +8519,19 @@
             <td class="remarks-col">
                 <input type="text" class="remarks-input" data-row="rmk-lbmed-871ec3fcc5" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbmed-99bcdeda06">
+        </tr><tr data-row="lbmed-16292bb52a">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col">1359915920.0</td>
-            <td class="amount">$47.00</td>
-            <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbmed-99bcdeda06" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </td>
-            <td class="posted-col">
-                <select class="posted-select" data-row="lbmed-99bcdeda06" onchange="updateStatus(this)">
-                    <option value="">--</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                    <option value="partial">Partial</option>
-                </select>
-            </td>
-            <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbmed-99bcdeda06" placeholder="Add remarks..." onchange="saveRemark(this)">
-            </td>
-        </tr><tr data-row="lbmed-d6c65a64f4">
-            <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">1359915920</td>
             <td class="amount">$45.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbmed-d6c65a64f4" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbmed-16292bb52a" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbmed-d6c65a64f4" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbmed-16292bb52a" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -8693,21 +8539,21 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbmed-d6c65a64f4" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbmed-16292bb52a" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
-        </tr><tr data-row="lbmed-2dabb6053a">
+        </tr><tr data-row="lbmed-cb0dd2ca63">
             <td class="date-col">04/07/2026</td>
-            <td class="check-col"></td>
+            <td class="check-col">1359915920</td>
             <td class="amount">$1.00</td>
             <td class="posted-col">
-                <select class="posted-select eob-select" data-row="eob-lbmed-2dabb6053a" onchange="updateStatus(this)">
+                <select class="posted-select eob-select" data-row="eob-lbmed-cb0dd2ca63" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </td>
             <td class="posted-col">
-                <select class="posted-select" data-row="lbmed-2dabb6053a" onchange="updateStatus(this)">
+                <select class="posted-select" data-row="lbmed-cb0dd2ca63" onchange="updateStatus(this)">
                     <option value="">--</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -8715,7 +8561,7 @@
                 </select>
             </td>
             <td class="remarks-col">
-                <input type="text" class="remarks-input" data-row="rmk-lbmed-2dabb6053a" placeholder="Add remarks..." onchange="saveRemark(this)">
+                <input type="text" class="remarks-input" data-row="rmk-lbmed-cb0dd2ca63" placeholder="Add remarks..." onchange="saveRemark(this)">
             </td>
         </tr><tr class="date-header">
             <td colspan="6">

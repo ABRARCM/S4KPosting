@@ -372,7 +372,30 @@ if 'Transaction ID' in lb.columns:
 
 # Accept both "Check" and "Coupon" item types (different lockbox export formats)
 # "Corr" = Correspondence Only (EOBs without checks) — always excluded
-lb_checks = lb[(lb['Item Type'].isin(['Check', 'Coupon'])) & (lb['Amount'] > 0)].copy()
+# Coupon rows have amounts but no check numbers; Check rows have check numbers.
+# They share the same Transaction ID, so merge check numbers onto Coupon rows.
+lb_coupon = lb[(lb['Item Type'] == 'Coupon') & (lb['Amount'] > 0)].copy()
+lb_check_rows = lb[lb['Item Type'] == 'Check'].copy()
+
+if not lb_coupon.empty and not lb_check_rows.empty and 'Transaction ID' in lb.columns:
+    # Merge check numbers from Check rows onto Coupon rows by Transaction ID
+    chk_lookup = lb_check_rows[['Transaction ID', 'Check Number', 'Check ABA/RT']].drop_duplicates('Transaction ID')
+    lb_coupon = lb_coupon.drop(columns=['Check Number', 'Check ABA/RT'], errors='ignore')
+    lb_coupon = lb_coupon.merge(chk_lookup, on='Transaction ID', how='left')
+
+# Combine: use Coupon rows (with merged check numbers) + any Check-only rows not in Coupon set
+if not lb_coupon.empty:
+    coupon_txn_ids = set(lb_coupon['Transaction ID'].astype(str))
+    lb_check_only = lb_check_rows[~lb_check_rows['Transaction ID'].astype(str).isin(coupon_txn_ids)]
+    lb_check_only = lb_check_only[lb_check_only['Amount'] > 0]
+    lb_checks = pd.concat([lb_coupon, lb_check_only], ignore_index=True)
+else:
+    lb_checks = lb_check_rows[lb_check_rows['Amount'] > 0].copy()
+
+# Format check numbers as integers (avoid scientific notation like 1.000400e+09)
+lb_checks['Check Number'] = lb_checks['Check Number'].apply(
+    lambda x: str(int(float(x))) if pd.notna(x) and str(x).strip() not in ['', 'nan'] else ''
+)
 lb_checks = lb_checks.sort_values(['Processed Date', 'Amount'], ascending=[False, False])
 
 lb_ppo = lb_checks[lb_checks['Lockbox Number'] == '11234']
