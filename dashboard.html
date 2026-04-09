@@ -422,9 +422,14 @@
     </div>
 
     <div class="progress-bar">
-        <div class="prog-label">Posting Progress:</div>
-        <div class="prog-track"><div class="prog-fill" id="progressFill"></div></div>
-        <div class="prog-text" id="progressText">0%</div>
+        <div class="prog-label">PPO Posting:</div>
+        <div class="prog-track"><div class="prog-fill" id="progressFillPPO" style="background:linear-gradient(90deg,#0077B6,#00B4D8)"></div></div>
+        <div class="prog-text" id="progressTextPPO">0%</div>
+    </div>
+    <div class="progress-bar" style="margin-top:8px">
+        <div class="prog-label">Medicaid Posting:</div>
+        <div class="prog-track"><div class="prog-fill" id="progressFillMed" style="background:linear-gradient(90deg,#A855F7,#7c3aed)"></div></div>
+        <div class="prog-text" id="progressTextMed">0%</div>
     </div>
 
     <!-- DUAL ACCOUNT OVERVIEW -->
@@ -9935,14 +9940,33 @@ function saveRemark(input) {
 }
 
 function updateProgress() {
-    // Count ALL posted-select dropdowns that are NOT EOB selects (across ALL tabs)
-    const selects = document.querySelectorAll('.posted-select:not(.eob-select)');
-    const total = selects.length;
-    let done = 0;
-    selects.forEach(s => { if (s.value === 'yes') done++; });
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressText').textContent = pct + '%';
+    // PPO tabs: eft, lbppo, depchk, bankdep, deposits, outgoing
+    const ppoTabs = ['tab-eft', 'tab-lbppo', 'tab-depchk', 'tab-bankdep', 'tab-deposits', 'tab-outgoing'];
+    // Medicaid tabs: eftmed, lbmed
+    const medTabs = ['tab-eftmed', 'tab-lbmed'];
+
+    function countProgress(tabIds) {
+        let total = 0, done = 0;
+        tabIds.forEach(id => {
+            const tab = document.getElementById(id);
+            if (tab) {
+                const selects = tab.querySelectorAll('.posted-select:not(.eob-select)');
+                selects.forEach(s => {
+                    total++;
+                    if (s.value === 'yes') done++;
+                });
+            }
+        });
+        return total > 0 ? Math.round((done / total) * 100) : 0;
+    }
+
+    const ppoPct = countProgress(ppoTabs);
+    document.getElementById('progressFillPPO').style.width = ppoPct + '%';
+    document.getElementById('progressTextPPO').textContent = ppoPct + '%';
+
+    const medPct = countProgress(medTabs);
+    document.getElementById('progressFillMed').style.width = medPct + '%';
+    document.getElementById('progressTextMed').textContent = medPct + '%';
 }
 
 // === Real-time listeners — sync across all users ===
